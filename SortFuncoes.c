@@ -57,6 +57,21 @@ void HeapSort(int vetor[N]){
     }
 }
 
-void QuickSort(){}
+void QuickSort(){
+}
 
-void InsertSort(){}
+void InsertSort(int vetor[N]){
+    int i;
+    int j;
+    int aux;
+    for (i = 2; i <= N; i++){ //i começa em 2 por que vetor de 1 elemento ja esta ordenado
+        aux = vetor[i];
+        j = i-1;
+        vetor[0] = aux; //sentinela
+        while (aux < vetor[j]){
+            vetor[j+1] = vetor[j];
+            j--;
+        }
+        vetor[j+1] = aux;
+    }
+}
