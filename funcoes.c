@@ -31,3 +31,15 @@ void aleatorizar_vetor(int vetor_prioridades[]){
 
 }
 
+int mediana(int vetor[], int inicio, int fim){
+
+    int meio = inicio + (fim - inicio) / 2;
+
+    if ((vetor[inicio] > vetor[meio]) != (vetor[inicio] > vetor[fim-1])) {
+        return 0;
+    } else if ((vetor[meio] > vetor[inicio]) != (vetor[meio] > vetor[fim-1])) {
+        return meio;
+    } else {
+        return fim-1;
+    }
+}

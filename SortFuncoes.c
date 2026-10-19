@@ -1,4 +1,5 @@
 #include "SortFuncoes.h"
+#include "funcoes.h"
 
 void IniciaHeap(){}
 
@@ -57,7 +58,10 @@ void HeapSort(int vetor[N]){
     }
 }
 
-void QuickSort(){
+void QuickSort(int vetor[], int tamanho){
+ 
+    int pivo = mediana(vetor, 0, tamanho);
+
 }
 
 void InsertSort(int vetor[N]){
