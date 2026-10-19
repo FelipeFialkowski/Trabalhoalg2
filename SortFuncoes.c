@@ -1,4 +1,4 @@
-#include "Funcoes.h"
+#include "SortFuncoes.h"
 
 void IniciaHeap(){}
 

@@ -1,3 +1,1 @@
-
-
-int aleatorio(int max, int vetor[]);
+void vetor_embaralhado(int vetor_prioridades[]); //Função que preenche um vetor com números de 1 a N aleatoriamente

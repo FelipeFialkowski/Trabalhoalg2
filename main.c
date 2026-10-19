@@ -3,15 +3,14 @@
 #include <time.h>
 
 #include "funcoes.h"
-
+#include "SortFuncoes.h"
 
 
 int main(){
 
-    int max = 853;
-    int vetor[max];
+    int vetor_prioridades[N];
+    struct Prioridade passageiros;
 
     srand(time(NULL));
-    printf("O numero é %d",aleatorio(max, vetor));
   
 }

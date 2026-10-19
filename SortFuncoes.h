@@ -11,12 +11,12 @@ struct Prioridade{
 void IniciaHeap();
 void InsereHeap(int vetor[N],int pos,int elemento);
 void RemoveHeap();
-void Heapfy(); //mostrar numero de comparações e trocas
+void Heapfy(int vetor[N]); //mostrar numero de comparações e trocas
 void ChecaHeap();
 void ImprimeHeap();
 void SacodeHeap(int vetor[N],int m);
 void HeapSort(int vetor[N]); //mostrar numero de comparações e trocas
 void QuickSort();
-void InsertSort();
+void InsertSort(int vetor[N]);
 
 #endif
