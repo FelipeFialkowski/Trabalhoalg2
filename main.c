@@ -8,9 +8,9 @@
 
 int main(){
 
-    int vetor_prioridades[N];
-    struct Prioridade passageiros;
-
     srand(time(NULL));
+
+    int vetor_prioridades[N];
+    aleatorizar_vetor(vetor_prioridades);
   
 }

@@ -2,7 +2,7 @@
 
 void IniciaHeap(){}
 
-void InsereHeap(int vetor[],int tam,int elemento){
+void InsereHeap(int vetor[N],int tam,int elemento){
     int aux;
     int novo = tam+1;
     vetor[novo] = elemento;
@@ -20,7 +20,7 @@ void RemoveHeap(){}
 void Heapfy(int vetor[N]){
     int i;
     for (i = 1; i < N; i++)
-        InsereHeap(vetor[N],i,vetor[i+1]);
+        InsereHeap(vetor,i,vetor[i+1]);
 }
 
 void ChecaHeap(){}
@@ -48,12 +48,12 @@ void SacodeHeap(int vetor[N],int m){
 void HeapSort(int vetor[N]){
     int i;
     int aux;
-    Heapfy(vetor[N]);
+    Heapfy(vetor);
     for (i = N; i > 1; i--){
         aux = vetor[1];
         vetor[1] = vetor[i];
         vetor[i] = aux;
-        SacodeHeap(vetor[N], i-1);
+        SacodeHeap(vetor, i-1);
     }
 }
 
