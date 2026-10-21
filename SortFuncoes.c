@@ -1,21 +1,22 @@
 #include "SortFuncoes.h"
 #include "funcoes.h"
+#include <string.h>
 
 void IniciaHeap(int *tam){
     *tam = 0; //cria um vetor vazio
 }
 
-void InsereHeap(int vetor[N],int tam,int elemento, int *contador){
+void InsereHeap(Passageiro vetor[N],int tam,Passageiro elemento, int *contador){
     int aux;
     int novo = tam+1;
-    vetor[novo] = elemento;
+    vetor[novo].Prioridade = elemento.Prioridade;
     while (novo > 1){
         (*contador ++); //para a comparação do while
-        if (vetor[novo/2] < vetor[novo]){
+        if (vetor[novo/2].Prioridade < vetor[novo].Prioridade){
             (*contador ++); //para a comparação do if
-            aux = vetor[novo];
-            vetor[novo] = vetor[novo/2];
-            vetor[novo/2] = aux;
+            aux = vetor[novo].Prioridade;
+            vetor[novo].Prioridade = vetor[novo/2].Prioridade;
+            vetor[novo/2].Prioridade = aux;
             novo = novo/2;
         }
         else{
@@ -27,38 +28,52 @@ void InsereHeap(int vetor[N],int tam,int elemento, int *contador){
 
 Passageiro RemoveHeap(Passageiro vetor[N],int *tam){
     //como estamos trabalhando com um MaxHeap,para retirar o elemento de maior prioridade removemos o elemento do topo do Heap
-    Passageiro removido = vetor[1];
-    vetor[1] = vetor[*tam];
-    (*tam)--;
-    Heapfy(vetor, *tam);
-    return removido; //mostra quem saium
-    //não ah verificação caso o tamanho seja igual a 0,arrumar isso depois
+    if (*tam == 0) //verifiação basica se o vetor é vazio,talvez trocar para um TAD separado depois
+        return;
+    else{
+        Passageiro removido = vetor[1];
+        vetor[1] = vetor[*tam];
+        (*tam)--;
+        Heapfy(vetor, *tam);
+        return removido; //mostra quem saiu
+    }
 }
 
-void Heapfy(int vetor[N],int tam){
+void Heapfy(Passageiro vetor[N],int tam){
     int i;
     int *comparacoes;
     for (i = 1; i < N; i++)
         InsereHeap(vetor,i,vetor[i+1],*comparacoes);
 }
 
-void ChecaHeap(){}
+void ChecaHeap(){
+    //função que checa se um vetor é Heap ou não
+}
 
-void ImprimeHeap(){}
+void ImprimeHeap(Passageiro vetor[N], int tam){
+    /*função que imprime Nome e prioridade de um Heap que ainda devem ser embarcados, como essa função pode ser 
+    chamada a qualque momento,colocamos o Heapfy nela para ordenar o Heap*/
+    Heapfy(vetor,tam);
+    int i;
+    for (i = 1; i <= tam; i++){
+        printf("Nome: %s", vetor[i].Nome);
+        printf("Prioridade: $d", vetor[i].Prioridade);
+    }
+}
 
-void SacodeHeap(int vetor[N],int m){
+void SacodeHeap(Passageiro vetor[N],int m){
     int aux;
     int i=2;
     while (i <= m){
         if (i < m)
-            if (vetor[i]<vetor[i+1])
+            if (vetor[i].Prioridade < vetor[i+1].Prioridade)
                 i++;
-        if (vetor[i/2] >= vetor[i])
+        if (vetor[i/2].Prioridade >= vetor[i].Prioridade)
             break; //Ta tudo certo
         else{
-            aux = vetor[i/2];
-            vetor[i/2] = vetor[i];
-            vetor[i] = aux;
+            aux = vetor[i/2].Prioridade;
+            vetor[i/2].Prioridade = vetor[i].Prioridade;
+            vetor[i].Prioridade = aux;
             i = i*2;
         }
     }
