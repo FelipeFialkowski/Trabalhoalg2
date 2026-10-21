@@ -1,26 +1,26 @@
 #include "SortFuncoes.h"
 #include "funcoes.h"
-#include <string.h>
 
 void IniciaHeap(int *tam){
     *tam = 0; //cria um vetor vazio
 }
 
-void InsereHeap(Passageiro vetor[N],int tam,Passageiro elemento, int *contador){
+void InsereHeap(Passageiro vetor[N],int tam,Passageiro elemento, int *contador, int *trocas){
     int aux;
     int novo = tam+1;
     vetor[novo].Prioridade = elemento.Prioridade;
     while (novo > 1){
-        (*contador ++); //para a comparação do while
+        (*contador) ++; //para a comparação do while
         if (vetor[novo/2].Prioridade < vetor[novo].Prioridade){
             (*contador ++); //para a comparação do if
             aux = vetor[novo].Prioridade;
             vetor[novo].Prioridade = vetor[novo/2].Prioridade;
             vetor[novo/2].Prioridade = aux;
+            (*trocas)++; //as 3 operações acima contam para uma unica troca
             novo = novo/2;
         }
         else{
-            (*contador ++); //para a comparação do else
+            (*contador) ++; //para a comparação do else
             break; //heap correto
         }
     }
@@ -42,8 +42,11 @@ Passageiro RemoveHeap(Passageiro vetor[N],int *tam){
 void Heapfy(Passageiro vetor[N],int tam){
     int i;
     int *contador;
+    int *trocas;
     for (i = 1; i < N; i++)
-        InsereHeap(vetor,i,vetor[i+1],*contador);
+        InsereHeap(vetor,i,vetor[i+1],*contador,*trocas);
+    printf("O numero de comparações no Heapfy foi: %d\n", contador);
+    printf("O numero de trocas no Heapfy foi: %d\n", trocas);
 }
 
 void ChecaHeap(Passageiro vetor[N]){
@@ -79,16 +82,17 @@ void SacodeHeap(Passageiro vetor[N],int tam){
     }
 }
 
-void HeapSort(Passageiro vetor[N],int *contador){
+void HeapSort(Passageiro vetor[N],int *contador, int *trocas){
     int i;
     int aux;
-    Heapfy(vetor,*contador);
+    Heapfy(vetor,i);
     for (i = N; i > 1; i--){
         aux = vetor[1].Prioridade;
         vetor[1].Prioridade = vetor[i].Prioridade;
         vetor[i].Prioridade = aux;
         SacodeHeap(vetor, i-1);
-        printf("O numero de compações foi: %d", contador);
+        printf("O numero de compações no Heapsort foi: %d\n", contador);
+        printf("O numero de trocas no Heapsort foi: %d\n", trocas);
     }
 }
 

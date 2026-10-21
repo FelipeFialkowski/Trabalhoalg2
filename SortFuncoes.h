@@ -2,6 +2,7 @@
 #define FUNCOES
 #define N 853
 #include <stdio.h>
+#include <string.h>
 
 typedef struct Prioridade{
     char Nome[50];
@@ -9,13 +10,13 @@ typedef struct Prioridade{
 }Passageiro;
 
 void IniciaHeap(int *tam);
-void InsereHeap(Passageiro vetor[N],int tam,Passageiro elemento, int *contador); //* adicionado para contar comparações de Heapfy
+void InsereHeap(Passageiro vetor[N],int tam,Passageiro elemento, int *contador, int *trocas); //* adicionado para contar comparações de Heapfy
 Passageiro RemoveHeap(Passageiro vetor[N],int *tam);
 void Heapfy(Passageiro vetor[N],int tam); //mostrar numero de comparações e trocas
 void ChecaHeap(Passageiro vetor[N]);
 void ImprimeHeap(Passageiro vetor[N], int tam);
 void SacodeHeap(Passageiro vetor[N],int tam);
-void HeapSort(Passageiro vetor[N],int *contador); //mostrar numero de comparações e trocas
+void HeapSort(Passageiro vetor[N],int *contador); //mostrar numero de comparações e trocas(verificar depois se esta certo)
 void QuickSort(Passageiro vetor[N], int tam);
 void InsertSort(Passageiro vetor[N]);
 
