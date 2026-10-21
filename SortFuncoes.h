@@ -9,14 +9,14 @@ typedef struct Prioridade{
 }Passageiro;
 
 void IniciaHeap(int *tam);
-void InsereHeap(int vetor[N],int pos,int elemento,int *contador); //* adicionado para contar comparações de Heapfy
-void RemoveHeap();
-void Heapfy(int vetor[N],int *contador); //mostrar numero de comparações e trocas
-void ChecaHeap();
-void ImprimeHeap();
-void SacodeHeap(int vetor[N],int m);
-void HeapSort(int vetor[N],int *contador); //mostrar numero de comparações e trocas
-void QuickSort(int vetor[N], int tam);
-void InsertSort(int vetor[N]);
+void InsereHeap(Passageiro vetor[N],int tam,Passageiro elemento, int *contador); //* adicionado para contar comparações de Heapfy
+Passageiro RemoveHeap(Passageiro vetor[N],int *tam);
+void Heapfy(Passageiro vetor[N],int tam); //mostrar numero de comparações e trocas
+void ChecaHeap(Passageiro vetor[N]);
+void ImprimeHeap(Passageiro vetor[N], int tam);
+void SacodeHeap(Passageiro vetor[N],int tam);
+void HeapSort(Passageiro vetor[N],int *contador); //mostrar numero de comparações e trocas
+void QuickSort(Passageiro vetor[N], int tam);
+void InsertSort(Passageiro vetor[N]);
 
 #endif

@@ -41,18 +41,18 @@ Passageiro RemoveHeap(Passageiro vetor[N],int *tam){
 
 void Heapfy(Passageiro vetor[N],int tam){
     int i;
-    int *comparacoes;
+    int *contador;
     for (i = 1; i < N; i++)
-        InsereHeap(vetor,i,vetor[i+1],*comparacoes);
+        InsereHeap(vetor,i,vetor[i+1],*contador);
 }
 
-void ChecaHeap(){
+void ChecaHeap(Passageiro vetor[N]){
     //função que checa se um vetor é Heap ou não
 }
 
 void ImprimeHeap(Passageiro vetor[N], int tam){
     /*função que imprime Nome e prioridade de um Heap que ainda devem ser embarcados, como essa função pode ser 
-    chamada a qualque momento,colocamos o Heapfy nela para ordenar o Heap*/
+    chamada a qualque momento,colocamos o Heapfy nela para ordenar o Heap atual*/
     Heapfy(vetor,tam);
     int i;
     for (i = 1; i <= tam; i++){
@@ -61,11 +61,11 @@ void ImprimeHeap(Passageiro vetor[N], int tam){
     }
 }
 
-void SacodeHeap(Passageiro vetor[N],int m){
+void SacodeHeap(Passageiro vetor[N],int tam){
     int aux;
     int i=2;
-    while (i <= m){
-        if (i < m)
+    while (i <= tam){
+        if (i < tam)
             if (vetor[i].Prioridade < vetor[i+1].Prioridade)
                 i++;
         if (vetor[i/2].Prioridade >= vetor[i].Prioridade)
@@ -79,47 +79,47 @@ void SacodeHeap(Passageiro vetor[N],int m){
     }
 }
 
-void HeapSort(int vetor[N],int *contador){
+void HeapSort(Passageiro vetor[N],int *contador){
     int i;
     int aux;
     Heapfy(vetor,*contador);
     for (i = N; i > 1; i--){
-        aux = vetor[1];
-        vetor[1] = vetor[i];
-        vetor[i] = aux;
+        aux = vetor[1].Prioridade;
+        vetor[1].Prioridade = vetor[i].Prioridade;
+        vetor[i].Prioridade = aux;
         SacodeHeap(vetor, i-1);
         printf("O numero de compações foi: %d", contador);
     }
 }
 
-void QuickSort(int vetor[N], int tam){
+void QuickSort(Passageiro vetor[N], int tam){
     int pivo; //como o pivo é a mediana pegamos 3 valores e pegamos o do meio
-    int comeco = vetor[1]; //guardamos o 0 para o sentinela
-    int fim = vetor[tam];
-    int meio = vetor[(tam+1)/2]; //c ja da o floor do valor
+    int comeco = vetor[1].Prioridade; //guardamos o 0 para o sentinela
+    int fim = vetor[tam].Prioridade;
+    int meio = vetor[(tam+1)/2].Prioridade; //c ja da o floor do valor
     //O codigo abaixo talvez não esteja otimizado e possa ser melhorado
     if (((comeco >= fim) && (comeco <= meio)) || ((comeco <= fim) && (comeco >= meio))) //comeco como mediana
         pivo = comeco;
-    else if (((meio >= fim) && (meio <= comeco)) || ((meio >= comeco) && (meio <= fim)))
+    else if (((meio >= fim) && (meio <= comeco)) || ((meio >= comeco) && (meio <= fim))) //meio como mediana
         pivo = meio;
-    else
+    else //fim como mediana
         pivo = fim;
     
     //terminar o quick sort depois...
 }
 
-void InsertSort(int vetor[N]){
+void InsertSort(Passageiro vetor[N]){
     int i;
     int j;
     int aux;
     for (i = 2; i <= N; i++){ //i começa em 2 por que vetor de 1 elemento ja esta ordenado
-        aux = vetor[i];
+        aux = vetor[i].Prioridade;
         j = i-1;
-        vetor[0] = aux; //sentinela
-        while (aux < vetor[j]){
-            vetor[j+1] = vetor[j];
+        vetor[0].Prioridade = aux; //sentinela
+        while (aux < vetor[j].Prioridade){
+            vetor[j+1].Prioridade = vetor[j].Prioridade;
             j--;
         }
-        vetor[j+1] = aux;
+        vetor[j+1].Prioridade = aux;
     }
 }
