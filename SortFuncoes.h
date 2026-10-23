@@ -4,13 +4,13 @@
 #include <stdio.h>
 #include <string.h>
 
-typedef struct {
-    char Nome[50];
+typedef struct Prioridade{
+    char Nome[50]; //Se o nome passar de 50 caracteres,pedir para usuario escolher um Nome menor?
     int Prioridade; //a prioridade vai de 1 a 853 por que usamos como base o numero de acentos em um Airbus A380
-} Passageiro;
+}Passageiro;
 
 void IniciaHeap(int *tam);
-void InsereHeap(Passageiro vetor[N],int *tam,Passageiro elemento, int *contador, int *trocas); //* adicionado para contar comparações de Heapfy
+void InsereHeap(Passageiro vetor[N],int tam,Passageiro elemento, int *contador, int *trocas); //* adicionado para contar comparações de Heapfy
 Passageiro RemoveHeap(Passageiro vetor[N],int *tam);
 void Heapfy(Passageiro vetor[N],int tam); //mostrar numero de comparações e trocas
 void ChecaHeap(Passageiro vetor[N]);
