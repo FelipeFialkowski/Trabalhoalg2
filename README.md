@@ -11,3 +11,7 @@ Kojima - Implementação do pivo escolhendo o valor mediano no quicksort,além d
 21/10/2026
 
 Kojima-Percebi que estava trabalhando com uma struct ao invez de simplismente um vetor e tive que trocar algumas das funções.
+
+23/10/2026
+
+Felipe - Implementação das prioridades para cada passageiro usando a função aleatorizar_vetor no main , e inicio de um menu de opções (tem que melhorar ainda), criação de função para fazer comparação entre metodos de ordenação.
