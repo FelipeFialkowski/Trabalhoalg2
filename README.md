@@ -15,3 +15,5 @@ Kojima-Percebi que estava trabalhando com uma struct ao invez de simplismente um
 23/10/2026
 
 Felipe - Implementação das prioridades para cada passageiro usando a função aleatorizar_vetor no main , e inicio de um menu de opções (tem que melhorar ainda), criação de função para fazer comparação entre metodos de ordenação.
+
+Kojima - implementação do checaHeap, além de acabar o quicksort e fazer a implementação da partição do quicksort(parte que levou tempo pra caramba por causa da mediana como pivo ao invez de um elemento inicial)
