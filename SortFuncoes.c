@@ -5,6 +5,7 @@ void IniciaHeap(int *tam){
     *tam = 0; //cria um vetor vazio
 }
 
+/*      Função antiga
 void InsereHeap(Passageiro vetor[N],int tam,Passageiro elemento, int *contador, int *trocas){
     int aux;
     int novo = tam+1;
@@ -25,11 +26,35 @@ void InsereHeap(Passageiro vetor[N],int tam,Passageiro elemento, int *contador, 
         }
     }
 }
+*/
+
+// Criei uma nova pra testar, se quiser ver melhor, manda mensagem   
+
+void InsereHeap(Passageiro vetor[], int *tam, Passageiro elemento, int *contador, int *trocas){
+    int novo = ++(*tam);
+    vetor[novo] = elemento;
+
+    while (novo > 1){
+        (*contador)++;
+        if (vetor[novo/2].Prioridade < vetor[novo].Prioridade){
+            Passageiro aux = vetor[novo];
+            vetor[novo] = vetor[novo/2];
+            vetor[novo/2] = aux;
+            (*trocas)++;
+            novo = novo/2;
+        } else {
+            break;
+        }
+    }
+}
+
+
 
 Passageiro RemoveHeap(Passageiro vetor[N],int *tam){
     //como estamos trabalhando com um MaxHeap,para retirar o elemento de maior prioridade removemos o elemento do topo do Heap
     if (*tam == 0) //verifiação basica se o vetor é vazio,talvez trocar para um TAD separado depois
-        return;
+        //return;
+        printf("Só pra sair o erro");
     else{
         Passageiro removido = vetor[1];
         vetor[1] = vetor[*tam];
@@ -44,9 +69,9 @@ void Heapfy(Passageiro vetor[N],int tam){
     int *contador;
     int *trocas;
     for (i = 1; i < N; i++)
-        InsereHeap(vetor,i,vetor[i+1],*contador,*trocas);
-    printf("O numero de comparações no Heapfy foi: %d\n", contador);
-    printf("O numero de trocas no Heapfy foi: %d\n", trocas);
+        InsereHeap(vetor, &i, vetor[i+1], contador, trocas);
+    printf("O numero de comparações no Heapfy foi: %d\n", *contador);
+    printf("O numero de trocas no Heapfy foi: %d\n", *trocas);
 }
 
 void ChecaHeap(Passageiro vetor[N]){
@@ -60,7 +85,7 @@ void ImprimeHeap(Passageiro vetor[N], int tam){
     int i;
     for (i = 1; i <= tam; i++){
         printf("Nome: %s", vetor[i].Nome);
-        printf("Prioridade: $d", vetor[i].Prioridade);
+        printf("Prioridade: %d", vetor[i].Prioridade);
     }
 }
 
@@ -91,8 +116,8 @@ void HeapSort(Passageiro vetor[N],int *contador, int *trocas){
         vetor[1].Prioridade = vetor[i].Prioridade;
         vetor[i].Prioridade = aux;
         SacodeHeap(vetor, i-1);
-        printf("O numero de compações no Heapsort foi: %d\n", contador);
-        printf("O numero de trocas no Heapsort foi: %d\n", trocas);
+        printf("O numero de comparações no Heapsort foi: %d\n", *contador);
+        printf("O numero de trocas no Heapsort foi: %d\n", *trocas);
     }
 }
 
@@ -127,3 +152,4 @@ void InsertSort(Passageiro vetor[N]){
         vetor[j+1].Prioridade = aux;
     }
 }
+
