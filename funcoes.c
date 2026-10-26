@@ -1,28 +1,45 @@
 #include <stdlib.h>
-#include <time.h>
 #include <stdio.h>
 
 #include "funcoes.h"
+#include "SortFuncoes.h"
 
-int aleatorio(int max, int vetor[]){
+void vetor_aleatorio_1024(int vetor_comparacao[]){
 
-    int i;
+    for (int i = 0; i < 1024; i ++){
+        vetor_comparacao[i] = rand() % 1024;
+    }
+}
 
-    for (i = 1; i <= max; i ++){
-        vetor[i] = i;
+void aleatorizar_vetor(int vetor_prioridades[]){
+
+    // Preenche o vetor com numeros de 1 até N
+    for (int i = 0; i < N; i ++){
+        vetor_prioridades[i] = i + 1;
     }
 
-    for (int i = max; i > 0; i --){
+    // Embaralha o vetor de maneira aleatória
+    for (int i = N - 1; i > 0; i --){
 
         int pos = rand () % (i + 1);
 
-        int aux = vetor[i];
-        vetor[i] = vetor[pos];
-        vetor[pos] = aux;
+        int aux = vetor_prioridades[i];
+        vetor_prioridades[i] = vetor_prioridades[pos];
+        vetor_prioridades[pos] = aux;
 
     }
 
-    int numero = vetor[1];
-    return numero;
+}
 
+int mediana(int vetor[], int inicio, int fim){
+
+    int meio = inicio + (fim - inicio) / 2;
+
+    if ((vetor[inicio] > vetor[meio]) != (vetor[inicio] > vetor[fim-1])) {
+        return 0;
+    } else if ((vetor[meio] > vetor[inicio]) != (vetor[meio] > vetor[fim-1])) {
+        return meio;
+    } else {
+        return fim-1;
+    }
 }
