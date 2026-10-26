@@ -116,7 +116,17 @@ void HeapSort(Passageiro vetor[N],int *contador, int *trocas){
     }
 }
 
-void particao(int vetor[Test], int esq,int dir,int *pos_pivo){
+int MaiorIgual(int a, int b, int *contador) {
+    (*contador)++;
+    return a >= b;
+}
+
+int MenorIgual(int a, int b, int *contador) {
+    (*contador)++;
+    return a <= b;
+}
+
+void particao(int vetor[Test], int esq,int dir,int *pos_pivo,int *comparacoes_quick, int *trocas_quick){
     //o codigo ficou tão menor depois de tirar a struct dele...
     int i,j,aux;
     int pivo; 
@@ -124,14 +134,19 @@ void particao(int vetor[Test], int esq,int dir,int *pos_pivo){
     int comeco = esq;
     int fim = dir;
     int meio = (esq + dir)/2; //c ja da o floor automatico
-    int mediana;
+    int mediana; //graças a contagem de comparações,tive que mudar os if e else
     
-    if (((comeco >= fim) && (comeco <= meio)) || ((comeco <= fim) && (comeco >= meio))) //comeco como mediana
+    //começo como mediana
+    if ((MaiorIgual(comeco,fim,comparacoes_quick) && MenorIgual(comeco,meio,comparacoes_quick)) ||
+        (MenorIgual(comeco,fim,comparacoes_quick) && MaiorIgual(comeco,meio,comparacoes_quick)))
         mediana = comeco;
-    else if (((meio >= fim) && (meio <= comeco)) || ((meio >= comeco) && (meio <= fim))) //meio como mediana
+    //meio como mediana
+    else if ((MaiorIgual(meio,fim,comparacoes_quick) && MenorIgual(meio,comeco,comparacoes_quick)) ||
+         (MenorIgual(meio,fim,comparacoes_quick) && MaiorIgual(meio,comeco,comparacoes_quick))) //meio como mediana
         mediana = meio;
     else //fim como mediana
         mediana = fim;
+        
     //colocamos a mediana no começo para trabalharmos com o quicksort normal,como se o primeiro elemento fosse o pivo
     aux = vetor[mediana];
     vetor[mediana] = vetor[esq];
@@ -156,27 +171,58 @@ void particao(int vetor[Test], int esq,int dir,int *pos_pivo){
     *pos_pivo = j;
 }
 
-void QuickSort(int vetor[Test], int esq, int dir){
+void QuickSort(int vetor[Test], int esq, int dir, int *comparacoes_quick, int *trocas_quick){
     int pos_pivo;
     if (esq < dir){
-        particao(vetor,esq,dir,&pos_pivo);
-        QuickSort(vetor,esq,pos_pivo-1);
-        QuickSort(vetor,pos_pivo+1,dir);
+        particao(vetor,esq,dir,&pos_pivo,comparacoes_quick,trocas_quick);
+        QuickSort(vetor,esq,pos_pivo-1,comparacoes_quick,trocas_quick);
+        QuickSort(vetor,pos_pivo+1,dir,comparacoes_quick,trocas_quick);
     }
 }
 
-void InsertSort(int vetor[Test]){
+void InsertSort(int vetor[Test], int *comparacoes_insert, int *trocas_insert){
+    //tive que mudar o while um pouco por causa da contagem de comparaçẽos
     int i,j,aux;
     for (i = 2; i<= Test; i++){
         aux = vetor[i];
         j = i-1;
         vetor[0] = aux; //sentinela
-        while (aux < vetor[j]){
+        while (1){
+            (*comparacoes_insert) ++; //o while faz a comparação
+            if (aux >= vetor[j])
+                break; //como tem break, o else fica desnessesaio
             vetor[j+1] = vetor[j];
+            (*trocas_insert) ++;
             j--;
         }
         vetor[j+1] = aux;
     }
 }
 
-void HeapSort2;
+void Particao2(){
+
+}
+
+void HeapSort2(){
+
+}
+
+int CriaVetorTest(int vetor[Test]){
+    int i;
+    int vetor[Test];
+    
+    for (i = 0; i < Test; i++)
+        vetor[i] = (i + 1); //como o indice começa em 0, o +1 serve para dizer que o primeiro elemento é 1 e não 0 
+    //vamos colocar todos os valores no vetor de forma ordenada e depois embaralhar ele
+    int j;
+    int aux;
+    for (i = Test; i > 1; i--){
+        j = rand() % (i + 1); //mesmo caso que o do vetor[i] = i + 1
+
+        //embaralhamento
+        aux = vetor[i];
+        vetor[i] = vetor[j];
+        vetor[j] = aux;
+    }
+    return vetor[Test];
+}

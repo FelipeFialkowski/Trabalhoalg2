@@ -68,9 +68,8 @@ int main(){
                 InsereHeap(heap, &tam, p, &contador, &trocas);
 
 
-            case 2:
-
-        
+            case 6:
+                CriaVetorTest(Test);
         }
     }
 
