@@ -14,12 +14,12 @@ int main(){
     // ata vlw
 
     int opcao = -1;
-    int vetor_prioridades[N];
+    int vetor_prioridades[N+1];
     int comparacoes, trocas = 0;
     int proximo = 1;
     int tam = N;
 
-    Passageiro heap[N]; 
+    Passageiro heap[N+1]; 
 
     srand(time(NULL));
 
@@ -36,7 +36,7 @@ int main(){
 
         printf("__________________________________________________________\n");
         printf("Inserir passageiro                                    [0] \n"
-               "Remover passageiro                                    [1] \n"
+               "Remover passageiro (Embarcar no avião)                [1] \n"
                "Imprimir passageiros que ainda vão embarcar           [2] \n"
                "Heapsort                                              [3] \n"
                "Imprimir passageiros por prioridade                   [4] \n"
@@ -66,18 +66,35 @@ int main(){
 
                 printf("A prioridade de embarque de %s é %d\n", p.Nome, p.Prioridade);
 
-                InsereHeap(heap, tam, p, &comparacoes, &trocas);
+                InsereHeap(heap, &tam, p, &comparacoes, &trocas);
 
+                break;
+
+            case 1:
+                RemoveHeap(heap, &tam);
+                break;
+
+            case 2:
+                ImprimeHeap(heap, tam);
+                break;
+
+            case 3:
+                HeapSort(heap, &comparacoes, &trocas);
+                break;  
+
+            case 4:
+                Heapfy(heap, tam);
+                ImprimeHeap(heap, tam);
                 break;
 
             //Compara 3 sorts diferentes para 1024 elementos 
             //Ainda precisa conferir o que é considerado troca em cada sort, mas comparações já esta certo
             case 5:
 
-                int vetor_comparacao[tamanho];
-                int vetor_heap[tamanho];
-                int vetor_quick[tamanho];
-                int vetor_insert[tamanho];
+                int vetor_comparacao[tamanho+1];
+                int vetor_heap[tamanho+1];
+                int vetor_quick[tamanho+1];
+                int vetor_insert[tamanho+1];
 
                 criar_vetor_aleatorio(vetor_comparacao);
 
