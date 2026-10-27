@@ -26,3 +26,7 @@ então eu me bati com a struct de vetor em ambos os codigos a toa(la se foi basi
 26/10/26
 
 kojima - fiz a função que cria o vetor de 1024 elementos, assim como a modificação dos codigos de insert e quicksort para contar as comparações
+
+27/10/2026
+
+Felipe - Criação de heapsort para inteiros, contagem de trocas e comparações de cada sort implementado no main 
