@@ -32,4 +32,4 @@ kojima - fiz a função que cria o vetor de 1024 elementos, assim como a modific
 
 27/10/2026
 
-Felipe - Criação de HeapSort para inteiros, contagem de comparações e trocas em cada sort, resultados aparecem no menu no main, funções como inseresort agora tamanho passa por referencia pra atualizar tamanho do vetor, menu atualizado e insereheap, removeheap e imprime heap funcionando normalmente por enquanto :)
+Felipe - Criação de HeapSort para inteiros, contagem de comparações e trocas em cada sort, resultados aparecem no menu no main, funções como insereheap tem tamanho passado por referencia para atualizar otamanho do vetor, menu atualizado e insereheap, removeheap e imprime heap funcionando normalmente por enquanto :)
