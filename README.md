@@ -17,19 +17,16 @@ Kojima-Percebi que estava trabalhando com uma struct ao invez de simplismente um
 Felipe - Implementação das prioridades para cada passageiro usando a função aleatorizar_vetor no main , e inicio de um menu de opções (tem que melhorar ainda), criação de função para fazer comparação entre metodos de ordenação.
 
 Kojima - implementação do checaHeap, além de acabar o quicksort e fazer a implementação da partição do quicksort(parte que levou tempo pra caramba por causa da mediana como pivo ao invez de um elemento inicial)
-<<<<<<< HEAD
-=======
 
 25/10/2026
 
 kojima - percebi que a implementação tanto do quick quanto do insert é para serem feitas em um vetor paralelo
 então eu me bati com a struct de vetor em ambos os codigos a toa(la se foi basicamente o dia 23 todo por causa do vetor de struct no quicksort)...também tive que implementao o heapsort para o vetor de comparação ao invez de uma struct, além disso fiz algumas modificações no menu de opções, quick e select ainda faltou fazer o heapsort para os 1024 elementos,faltou adicionar numero de comparações e trocas no quick e select
 
-26/10/26
+26/10/2026
 
 kojima - fiz a função que cria o vetor de 1024 elementos, assim como a modificação dos codigos de insert e quicksort para contar as comparações
->>>>>>> MakotoKojima-patch-1
 
-27/10/2026
+27/09/2026
 
-Felipe - Criação de HeapSort para inteiros, contagem de comparações e trocas em cada sort, resultados aparecem no menu no main, funções como insereheap tem tamanho passado por referencia para atualizar otamanho do vetor, menu atualizado e insereheap, removeheap e imprime heap funcionando normalmente por enquanto :)
+kojima - finalização da montagem do insert e do quick sort adaptados para contar trocas e comparações
