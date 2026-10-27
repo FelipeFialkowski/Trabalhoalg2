@@ -8,10 +8,10 @@ void IniciaHeap(int *tam){
     *tam = 0; //cria um vetor vazio
 }
 
-void InsereHeap(Passageiro vetor[N],int tam,Passageiro elemento, int *contador, int *trocas){
+void InsereHeap(Passageiro vetor[N],int *tam,Passageiro elemento, int *contador, int *trocas){
 
     int aux;
-    int novo = tam+1;
+    int novo = ++(*tam);
     vetor[novo] = elemento;
     while (novo > 1){
         (*contador) ++; //para a comparação do while
@@ -52,9 +52,9 @@ void Heapfy(Passageiro vetor[N],int tam){
     int contador = 0;
     int trocas = 0;
     for (i = 1; i < tam; i++)
-        InsereHeap(vetor,i,vetor[i+1], &contador, &trocas);
-    printf("O numero de comparações no Heapfy foi: %d\n", contador);
-    printf("O numero de trocas no Heapfy foi: %d\n", trocas);
+        InsereHeap(vetor, &i,vetor[i+1], &contador, &trocas);
+    //printf("O numero de comparações no Heapfy foi: %d\n", contador);
+    //printf("O numero de trocas no Heapfy foi: %d\n", trocas);
 }
 
 void ChecaHeap(Passageiro vetor[N]){
@@ -88,13 +88,13 @@ void ImprimeHeap(Passageiro vetor[N], int tam){
     Heapfy(vetor,tam);
     int i;
     for (i = 1; i <= tam; i++){
-        printf("Nome: %s", vetor[i].Nome);
-        printf("Prioridade: %d", vetor[i].Prioridade);
+        printf("Nome: %s\n", vetor[i].Nome);
+        printf("Prioridade: %d\n", vetor[i].Prioridade);
     }
 }
 
 void SacodeHeap(Passageiro vetor[N],int tam){
-    int aux;
+    Passageiro aux;
     int i=2;
     while (i <= tam){
         if (i < tam)
@@ -103,9 +103,9 @@ void SacodeHeap(Passageiro vetor[N],int tam){
         if (vetor[i/2].Prioridade >= vetor[i].Prioridade)
             break; //Ta tudo certo
         else{
-            aux = vetor[i/2].Prioridade;
-            vetor[i/2].Prioridade = vetor[i].Prioridade;
-            vetor[i].Prioridade = aux;
+            aux = vetor[i/2];
+            vetor[i/2] = vetor[i];
+            vetor[i] = aux;
             i = i*2;
         }
     }
