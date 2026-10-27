@@ -1,5 +1,5 @@
-#ifndef SortFuncoes_h
-#define SortFuncoes_h
+#ifndef FUNCOES
+#define FUNCOES
 #define N 853
 #define Test 1024
 #include <stdio.h>
@@ -26,11 +26,11 @@ void SacodeHeap(Passageiro vetor[N],int tam);
 
 void HeapSort(Passageiro vetor[N],int *contador, int *trocas); //mostrar numero de comparações e trocas(verificar depois se esta certo)
 
-void particao(int vetor[Test], int esq, int dir, int *pos_pivo, int *comparacoes_quick, int *trocas_quick);
+void particao(int vetor[Test], int esq,int dir,int *pos_pivo);
 
-void QuickSort(int vetor[Test], int esq, int dir, int *comparacoes_quick, int *trocas_quick);
+void QuickSort(int vetor[Test], int esq, int dir);
 
-void InsertSort(int vetor[Test], int *comparacoes_insert, int *trocas_insert);
+void InsertSort(int vetor[Test]);
 
 int CriaVetorTest(int vetor[Test]);
 

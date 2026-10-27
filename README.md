@@ -23,10 +23,10 @@ Kojima - implementação do checaHeap, além de acabar o quicksort e fazer a imp
 kojima - percebi que a implementação tanto do quick quanto do insert é para serem feitas em um vetor paralelo
 então eu me bati com a struct de vetor em ambos os codigos a toa(la se foi basicamente o dia 23 todo por causa do vetor de struct no quicksort)...também tive que implementao o heapsort para o vetor de comparação ao invez de uma struct, além disso fiz algumas modificações no menu de opções, quick e select ainda faltou fazer o heapsort para os 1024 elementos,faltou adicionar numero de comparações e trocas no quick e select
 
-26/10/26
+26/10/2026
 
 kojima - fiz a função que cria o vetor de 1024 elementos, assim como a modificação dos codigos de insert e quicksort para contar as comparações
 
-27/10/2026
+27/09/2026
 
-Felipe - Criação de heapsort para inteiros, contagem de trocas e comparações de cada sort implementado no main 
+kojima - finalização da montagem do insert e do quick sort adaptados para contar trocas e comparações
