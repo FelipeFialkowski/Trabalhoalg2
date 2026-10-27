@@ -103,9 +103,9 @@ void SacodeHeap(Passageiro vetor[N],int tam){
         if (vetor[i/2].Prioridade >= vetor[i].Prioridade)
             break; //Ta tudo certo
         else{
-            aux = vetor[i/2].Prioridade;
-            vetor[i/2].Prioridade = vetor[i].Prioridade;
-            vetor[i].Prioridade = aux;
+            aux = vetor[i/2];
+            vetor[i/2] = vetor[i];
+            vetor[i] = aux;
             i = i*2;
         }
     }
