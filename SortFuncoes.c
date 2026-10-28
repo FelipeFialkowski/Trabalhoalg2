@@ -5,10 +5,10 @@ void IniciaHeap(int *tam){
     *tam = 0; //cria um vetor vazio
 }
 
-void InsereHeap(Passageiro vetor[N],int tam,Passageiro elemento, int *contador, int *trocas){
-    int aux;
-    int novo = tam+1;
-    vetor[novo].Prioridade = elemento.Prioridade;
+void InsereHeap(Passageiro vetor[N],int *tam,Passageiro elemento, int *contador, int *trocas){
+    
+    int novo = ++(*tam);
+    vetor[novo] = elemento;
     while (novo > 1){
         (*contador) ++; //para a comparação do while
         if (vetor[novo/2].Prioridade < vetor[novo].Prioridade){
@@ -104,12 +104,12 @@ void SacodeHeap(Passageiro vetor[N],int tam){
 
 void HeapSort(Passageiro vetor[N],int *contador, int *trocas){
     int i;
-    int aux;
-    Heapfy(vetor,i);
+    Passageiro aux;
+    Heapfy(vetor, N);
     for (i = N; i > 1; i--){
-        aux = vetor[1].Prioridade;
-        vetor[1].Prioridade = vetor[i].Prioridade;
-        vetor[i].Prioridade = aux;
+        aux = vetor[1];
+        vetor[1] = vetor[i];
+        vetor[i] = aux;
         SacodeHeap(vetor, i-1);
         printf("O numero de compações no Heapsort foi: %d\n", contador);
         printf("O numero de trocas no Heapsort foi: %d\n", trocas);
