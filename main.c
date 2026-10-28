@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 #include "funcoes.h"
 #include "SortFuncoes.h"
@@ -8,29 +9,21 @@
 
 int main(){
 
-    // KOJIMA NÃO ESQUECE DE MUDAR OS PARAMETROS DO PROTOTIPO DA FUNÇÃO TAMBÉM, SE NÃO EU FICO QUE NEM CORNO PROCURANDO O ERRO QUE IMPEDE DE COMPILAR KKKKKKKKKKKKK
-    //da seus pulos felipe, não sei o que é prototipo não kkkk
-    //além disso lembre que nosso vetor ta guardando 0 como sentinela, nosso vetor vai sempre de 1 a N, não de 0 a N-1
-
     int opcao = -1;
     int vetor_prioridades[N];
     int proximo, contador, trocas = 0;
     int tam = N;
-    
+    int resultado;
+    int a;
 
-    Passageiro heap[N + 1]; 
+    Passageiro heap[N+1]; 
 
     srand(time(NULL));
 
     IniciaHeap(&tam);
-    Aleatorizar_vetor(vetor_prioridades);
+    aleatorizar_vetor(vetor_prioridades);
    
-    
-
-    //Menu de opções (Tá em teste por enquanto) 
-    //K:achei meio bizarro a primeira opção ser pra sair do programa, mas isso é só implicancia mesmo
-
-    while (opcao != 0){
+    while (opcao != 6){
 
         printf("__________________________________________________________\n");
         printf("Sair do programa                                      [0] \n"
@@ -44,21 +37,28 @@ int main(){
             
 
         
-        scanf("%d" , &opcao);
+        do {
+            resultado = scanf("%d", &opcao);
+            while ((a = getchar()) != '\n' && a != EOF);
+            if (resultado != 1) {
+                printf("Entrada invalida! Digite apenas números de 0 a 6 por favor.\n");
+                
+                
+            }
+        } while (resultado != 1);
         printf("__________________________________________________________\n");
 
         switch(opcao){
 
             case 0:
-                printf("Saindo do programa...\n");
-                break;
-
-            case 1:
-                //considerando que teremos que colocar 1 por 1,talvez tenha sido um erro ter mais de 800...
+              
                 Passageiro p;
 
-                printf("Nome: ");
-                scanf("%49s", p.Nome);            
+                //Usei fgets pra ler o nome do passageiro completo (caso tenha espaços)
+
+                printf("Digite o nome do passageiro: ");
+                fgets(p.Nome, sizeof(p.Nome), stdin);
+                p.Nome[strcspn(p.Nome, "\n")] = 0; 
 
                 p.Prioridade = vetor_prioridades[proximo];
                 proximo++;
@@ -69,7 +69,12 @@ int main(){
 
 
             case 6:
-                CriaVetorTest(Test);
+                printf("Saindo do programa...\n");
+                break;
+
+            default:
+                printf("Opção inválida. Por favor digite um numero de 0 a 6\n");
+                break;
         }
     }
 
