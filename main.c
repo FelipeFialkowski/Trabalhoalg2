@@ -65,12 +65,12 @@ int main(){
                 break;
 
             case 1:
-                printf("Foi removido o passageiro %s | Prioridade: %d\n", heap[1].Nome, heap[1].Prioridade);
-                RemoveHeap(heap, &tam);
+                printf("O passageiro %s embarcou no avião | Prioridade: %d\n", heap[1].Nome, heap[1].Prioridade);
+                RemoveHeap(heap, &tam, &comparacoes, &trocas);
                 break;
 
             case 2:
-                ImprimeHeap(heap, tam);
+                ImprimeHeap(heap, tam, &comparacoes, &trocas);
                 break;
 
             case 3:
@@ -78,8 +78,8 @@ int main(){
                 break;  
 
             case 4:
-                Heapfy(heap, tam);
-                ImprimeHeap(heap, tam);
+                Heapfy(heap, tam, &comparacoes, &trocas);
+                ImprimeHeap(heap, tam, &comparacoes, &trocas);
                 break;
 
             //Compara 3 sorts diferentes para 1024 elementos 

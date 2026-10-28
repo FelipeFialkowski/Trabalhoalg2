@@ -31,25 +31,6 @@ void aleatorizar_vetor(int vetor_prioridades[]){
 
 }
 
-void InsereHeapInt(int vetor[tamanho], int tam, int valor, int *contador, int *trocas) {
-    vetor[tam] = valor;
-    int i = tam;
-
-    while (i > 1) {
-        (*contador)++;
-
-        if (vetor[i/2] < vetor[i]) {
-            int aux = vetor[i/2];
-            vetor[i/2] = vetor[i];
-            vetor[i] = aux;
-
-            (*trocas)++;
-            i = i / 2;
-        } else {
-            break;
-        }
-    }
-}
 void SacodeHeapInt(int vetor[tamanho], int raiz, int tam, int *contador, int *trocas) {
     int filho;
     int aux;
@@ -89,6 +70,7 @@ void HeapfyInt(int vetor[tamanho], int tam, int *contador, int *trocas) {
 }
 
 void HeapSortInt(int vetor[tamanho], int *contador, int *trocas) {
+    
     int aux;
 
     HeapfyInt(vetor, N, contador, trocas);
