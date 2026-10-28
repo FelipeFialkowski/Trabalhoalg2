@@ -11,7 +11,7 @@ void def_prioridade(int vetor_prioridades[]);       //Função que define para c
 
 int mediana(int vetor[], int inicio, int fim);              //Encontra a mediana de três valores
 
-void SacodeHeapInt(int vetor[tamanho],int tam, int *contador, int *trocas);
+void SacodeHeapInt(int vetor[tamanho], int raiz, int tam, int *contador, int *trocas);
 
 void HeapfyInt(int vetor[tamanho],int tam, int *contador, int *trocas);
 

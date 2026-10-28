@@ -10,7 +10,6 @@ void IniciaHeap(int *tam){
 
 void InsereHeap(Passageiro vetor[N],int *tam,Passageiro elemento, int *contador, int *trocas){
 
-    int aux;
     int novo = ++(*tam);
     vetor[novo] = elemento;
     while (novo > 1){
@@ -93,7 +92,7 @@ void ImprimeHeap(Passageiro vetor[N], int tam){
     }
 }
 
-void SacodeHeap(Passageiro vetor[N],int tam){
+void SacodeHeap(Passageiro vetor[N], int tam){
     Passageiro aux;
     int i=2;
     while (i <= tam){

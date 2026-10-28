@@ -5,19 +5,14 @@
 #include "funcoes.h"
 #include "SortFuncoes.h"
 
-
 int main(){
-
-    // KOJIMA NÃO ESQUECE DE MUDAR OS PARAMETROS DO PROTOTIPO DA FUNÇÃO TAMBÉM, SE NÃO EU FICO QUE NEM CORNO PROCURANDO O ERRO QUE IMPEDE DE COMPILAR KKKKKKKKKKKKK
-    //da seus pulos felipe, não sei o que é prototipo não kkkk
-    //além disso lembre que nosso vetor ta guardando 0 como sentinela, nosso vetor vai sempre de 1 a N, não de 0 a N-1
-    // ata vlw
 
     int opcao = -1;
     int vetor_prioridades[N+1];
     int comparacoes, trocas = 0;
     int proximo = 1;
     int tam = N;
+    char buffer[100];
 
     Passageiro heap[N+1]; 
 
@@ -25,12 +20,6 @@ int main(){
 
     IniciaHeap(&tam);
     aleatorizar_vetor(vetor_prioridades);
-   
-    
-
-    //Menu de opções (Tá em teste por enquanto) 
-    //K:achei meio bizarro a primeira opção ser pra sair do programa, mas isso é só implicancia mesmo
-    //F: kkkkkk por isso teste
 
     while (opcao != 6){
 
@@ -42,16 +31,20 @@ int main(){
                "Imprimir passageiros por prioridade                   [4] \n"
                "Comparar 3 sorts diferentes para 1024 elementos       [5] \n"
                "Sair do programa                                      [6] \n"
-
+                " \n"
                "O que você deseja fazer: ");
-            
 
+        if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
+            if (sscanf(buffer, "%d", &opcao) != 1) {
+              printf("__________________________________________________________\n");
+              printf("Entrada invalida! Por favor, digite apenas numeros.\n");
+              continue;
+            } 
+        }
         
-        scanf("%d" , &opcao);
         printf("__________________________________________________________\n");
-
-        switch(opcao){
-
+            
+        switch (opcao){
             // Inserir passageiro
             case 0:
                 //considerando que teremos que colocar 1 por 1,talvez tenha sido um erro ter mais de 800...
@@ -59,7 +52,8 @@ int main(){
                 Passageiro p;
 
                 printf("Nome: ");
-                scanf("%49s", p.Nome);            
+                fgets(p.Nome, sizeof(p.Nome), stdin);
+                p.Nome[strcspn(p.Nome, "\n")] = '\0';        
 
                 p.Prioridade = vetor_prioridades[proximo];
                 proximo++;
@@ -71,6 +65,7 @@ int main(){
                 break;
 
             case 1:
+                printf("Foi removido o passageiro %s | Prioridade: %d\n", heap[1].Nome, heap[1].Prioridade);
                 RemoveHeap(heap, &tam);
                 break;
 
@@ -134,9 +129,12 @@ int main(){
                 printf("Saindo do programa...\n");
                 break;
 
+            default:
+                printf("Opção inválida. Por favor digite um número entre 0 e 6.\n");
+                break;
+
         }
     }
 
     return 0;
-  
 }

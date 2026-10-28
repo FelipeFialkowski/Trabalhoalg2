@@ -22,7 +22,7 @@ void ChecaHeap(Passageiro vetor[N]);
 
 void ImprimeHeap(Passageiro vetor[N], int tam);
 
-void SacodeHeap(Passageiro vetor[N],int tam);
+void SacodeHeap(Passageiro vetor[N], int tam);
 
 void HeapSort(Passageiro vetor[N],int *contador, int *trocas); //mostrar numero de comparações e trocas(verificar depois se esta certo)
 
