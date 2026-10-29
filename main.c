@@ -9,7 +9,8 @@ int main(){
 
     int opcao = -1;
     int vetor_prioridades[N+1];
-    int comparacoes, trocas = 0;
+    int comparacoes = 0;
+    int trocas = 0;
     int proximo = 1;
     int tam = N;
     char buffer[100];
@@ -74,7 +75,7 @@ int main(){
                 break;
 
             case 3:
-                HeapSort(heap, &comparacoes, &trocas);
+                HeapSort(heap, tam, &comparacoes, &trocas);
                 break;  
 
             case 4:

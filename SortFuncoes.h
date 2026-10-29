@@ -24,7 +24,7 @@ void ImprimeHeap(Passageiro vetor[N], int tam, int *comparacoes, int *trocas);
 
 void SacodeHeap(Passageiro vetor[N], int raiz, int tam, int *comparacoes, int *trocas); //mostrar numero de comparações e trocas
 
-void HeapSort(Passageiro vetor[N],int *comparacoes, int *trocas); //mostrar numero de comparações e trocas(verificar depois se esta certo)
+void HeapSort(Passageiro vetor[N], int tam, int *comparacoes, int *trocas); //mostrar numero de comparações e trocas(verificar depois se esta certo)
 
 void particao(int vetor[Test], int esq, int dir, int *pos_pivo, int *comparacoes_quick, int *trocas_quick);
 

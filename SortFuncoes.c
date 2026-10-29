@@ -116,25 +116,22 @@ void SacodeHeap(Passageiro vetor[N], int raiz, int tam, int *comparacoes, int *t
     }
 }
 
-void HeapSort(Passageiro vetor[N], int *comparacoes, int *trocas) {
+void HeapSort(Passageiro vetor[N], int tam, int *comparacoes, int *trocas) {
     Passageiro aux;
 
-    Heapfy(vetor, N, comparacoes, trocas);
+    Heapfy(vetor, tam, comparacoes, trocas);
 
-    for (int i = N; i > 1; i--) {
+    for (int i = tam; i > 1; i--) {
         aux = vetor[1];
         vetor[1] = vetor[i];
         vetor[i] = aux;
-
         (*trocas)++;
 
         SacodeHeap(vetor, 1, i - 1, comparacoes, trocas);
     }
 
-    printf("O numero de comparacoes no Heapsort foi: %d\n",
-           *comparacoes);
-    printf("O numero de trocas no Heapsort foi: %d\n",
-           *trocas);
+    printf("O numero de comparacoes no Heapsort foi: %d\n", *comparacoes);
+    printf("O numero de trocas no Heapsort foi: %d\n", *trocas);
 }
 
 int MaiorIgual(int a, int b, int *comparacoes) {
