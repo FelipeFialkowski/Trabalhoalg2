@@ -1,6 +1,7 @@
 # Compilador e flags
 CC      = gcc
-CFLAGS  = -Wall -Wextra -std=c11 -MMD -MP
+CFLAGS  = -Wall -Wextra -std=c11 -MMD -MP -g -fsanitize=address
+LDFLAGS = -fsanitize=address
 
 # Diretorio dos objetos
 OBJ_DIR = obj
