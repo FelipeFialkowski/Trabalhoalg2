@@ -1,9 +1,66 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Relatório - VoeHeap</title>
+    <style>
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-size: 25px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-top: 0px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 17px;
+            margin-top: 32px;
+        }
+
+        h4 {
+            margin-top: 24px;
+        }
+
+        h5{
+            font-size: 22px;
+            
+        }
+
+        p {
+            margin-top: 0;
+        }
+
+        pre {
+            font-size: 16px;
+            border: 1px solid #000;
+            padding: 12px;
+            overflow-x: auto;
+        }
+
+        a {
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
 
@@ -11,16 +68,29 @@
 
     <h2>main.c</h2>
 
-    <p>
-        Dentro da main temos apenas o menu de opções assim como a inicialização de um vetor Heap de tamanho vazio utilizando da função InciaHeap,além também da criação de uma ordem aleatória para todos os elementos dos indices de N que vão de 1 até 853, <br>
-        esse numero foi escolhido pois é o mesmo numero de acentos do maior avião ja registrado.
-    <p>
-
     <h3>Menu de opções</h3>
 
     <p>
-      
+        Dentro da main temos apenas declarações de variaveis, a chamada da função IniciaHeap(&tam) que inicia um vetor heap vazio, a função aleatorizar_vetor() que embaralha os elementos de um vetor com N indices de 1 até 853, a capacidade maxima de passageiros do airbus A380, o maior avião do mundo. <br>
+        Dentro do menu de execução do programa temos um while que termina quando o usuario escolhe a opção de sair, as opções do menu foram feitas usando um case of que vai de 0 até 7 (7 sai do programa encerrando o while). <br>
+        <br>
+        0 - Inserir Passageiro: Cria uma struct passageiro que recebe o nome e a prioridade aleatória e que é colocado como parâmetro no insere heap. <br>
+
+        1 - Remover Passageiro: Verifica se o heap é vazio, caso não seja o primeiro elemento é removido do vetor(explicação do por que esta no RemoveHeap abaixo). <br>
+
+        2 - Imprimir passageiros: Imprime os passageiros que ainda devem embarcar, ordenados em Heap. <br>
+
+        3 - Imprime por prioridade: Cria uma copia do heap e deixa ele ordenado com HeapSort, logo em seguida o imprime, além disso é imprimido as comparações e trocas do heapfy e do heap sort. <br>
+
+        4 - Checa heap: verifica se o Heap atual é valido ou não. <br>
+
+        5 - Comparar Sorts: Compara o Heapsort,QuickSort e InsertSort, devolvendo o numero de comparações e trocas dos 3, também informa quem fez menos comparações e menos trocas. <br>
+
+        6 - Preenche espaços automaticamente: Cria um vetor com todos os lugares preenchidos e aplica Heapfy neles(explicação abaixo do que o Heapfy faz). <br>
+
+        7 - Sai do programa: Ele sai do programa encerrando o while. <br>
     </p>
+
 
     <h2>SortFuncoes.c</h2>
 
@@ -52,7 +122,7 @@
         Função que verifica se um vetor atual é heap ou não, vendo se um elemento pai é maior que seus elementos filhos
     </p>
 
-    <h4>ImrpimeHeap</h4>
+    <h4>ImprimeHeap</h4>
     <p>
         Função utilizada para imprimir os passageiros que ainda devem embarcar(por algum motivo ele ja automaticamente deixa eles em ordem de Heap)
     </p>
@@ -67,7 +137,7 @@
         No Heapsort primeiramente utilizamos Heapfy para fazer o vetor atual se tornar um Heap e após isso fazemos um loop, colocando o primeiro elemento do Heap(vetor[1]) no final do vetor e depois utilizando o SacodeHeap para arrumar o heap restante, repetindo isso até que o vetor Heap tenha se tornado um vetor ordenado, isso funciona devido ao fato de estarmos utilizando um MaxHeap, como o maior elemento sempre sera o (vetor[1]) então a ordenação do vetor sempre sera do maior para o menor até acabar o Heap
     </p>
 
-    <h3>Funções relacionadas ao QuickSort</h3>
+    <h5>Funções relacionadas ao QuickSort</h5>
 
     <h4>MaiorIgual, MenorIgual</h4>
     <p>
@@ -107,20 +177,44 @@ vetor[dir] = 98
         Essa função apenas é utilizada para o teste com o vetor de 1024 elementos.assim como visto em sala, o InserSort começa com 1 elemento e a cada iteração de um loop um novo elemento é adicionado  e após isso,comparado com o resto dos elementos do vetor, sendo arrastado para a esquerda até achar algum elemento menor que ele.
     </p>
 
-    <h4>HeapsortInt</h4>
+    <h2>funcoes.c</h2>
+
+    <h4>Criar_vetor_aleatorio</h4>
     <p>
-        para a realização do teste com o vetor de 1024 elementos, tivemos que criar um segundo Heapsort ja que o primeiro era utilizado em uma struct ja esse é apenas em um vetor, tendo sua propria versão do Sacode,<br>
-        Heapfy e Heapsort que possuem a mesma funcionalidade do Heapsort apresentado anteriormente, apenas para vetor ao invez de struct
+        Função que cria um vetor aleatório com 1024 elementos (que podem se repetir).
     </p>
 
-    <h2>Estrutura do Trabalho</h2>
-    <p></p>
+    <h4>Aleatorizar_vetor</h4>
+    <p>
+        Função que preenche um vetor do indice 1 ao 1024, depois disso para cada indice dentro dele, é escolhido de maneira aleatória um outro indice, e seus elementos são trocados um pelo outro.
 
-    <h2>Desenvolvimento do Trabalho</h2>
-    <p></p>
+    </p>
 
-    <h2>Análise de Resultados</h2>
-    <p></p>
+    <h4>SacodeHeapInt</h4>
+    <p>
+        Função que reorganiza um heap de inteiros, pegando um elemento e verificando se algum filho seu é maior que ele, e qual deles (caso sejam 2) caso sim, eles trocam as posições, e isso se repete dobrando o indice do elemento até que o indice seja maior que o tamanho atual.
+    </p>
+
+    <h4>HeapfyInt</h4>
+    <p>
+        Função que transforma qualquer vetor em um Heap. Aplica SacodeHeapInt até a metade inferior do vetor, que precisa ser "ordenada" para o vetor virar heap.
+    </p>
+
+    <h4>HeapsortInt</h4>
+    <p>
+        Para a realização do teste com o vetor de 1024 elementos, tivemos que criar um segundo Heapsort ja que o primeiro era utilizado em uma struct ja esse é apenas em um vetor, tendo sua propria versão do Sacode,
+        Heapfy e Heapsort que possuem a mesma funcionalidade do Heapsort apresentado anteriormente, mas para inteiros ao invés de structs.
+    </p>
+
+    <h4>Menos_trocas</h4>
+    <p4>
+        Função que compara o número de trocas entre três metodos de ordenação (Heapsort, QuickSort e InsertSort) e imprime quem fez menos trocas.
+    </p4>
+
+    <h4>Menos_comparacoes</h4>
+    <p4>
+        Função que compara o número de comparacoes entre três metodos de ordenação (Heapsort, QuickSort e InsertSort) e imprime quem fez menos comparacoes.
+    </p4>
 
     <br>
 
