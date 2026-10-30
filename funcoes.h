@@ -17,5 +17,4 @@ void menos_trocas(int trocas_heap, int trocas_quick, int trocas_insert);
 
 void menos_comparacoes(int comparacoes_heap, int comparacoes_quick, int comparacoes_insert);
 
-
 #endif
