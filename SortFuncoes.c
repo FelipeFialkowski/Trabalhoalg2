@@ -52,28 +52,26 @@ void Heapfy(Passageiro vetor[N], int tam, int *comparacoes, int *trocas) {
     }
 }
 
-void ChecaHeap(Passageiro vetor[N]){
+int ChecaHeap(Passageiro vetor[], int tam){
     int i;
-    int eh_heap = 1; 
 
-    for (i = 1; i <= N / 2; i++) {
+    for (i = 1; i <= tam / 2; i++) {
         int filho_esq = 2 * i;
         int filho_dir = 2 * i + 1;
 
-        if (filho_esq <= N) {
+        if (filho_esq <= tam) {
             if (vetor[i].Prioridade < vetor[filho_esq].Prioridade) {
-                eh_heap = 0;
-                break;
+                return 0;
             }
         }
 
-        if (filho_dir <= N) {
+        if (filho_dir <= tam) {
             if (vetor[i].Prioridade < vetor[filho_dir].Prioridade) {
-                eh_heap = 0;
-                break;
+                return 0;
             }
         }
     }
+    return 1;
 }
 /*função que imprime Nome e prioridade de um Heap que ainda devem ser embarcados*/
 void ImprimeHeap(Passageiro vetor[N], int tam) {

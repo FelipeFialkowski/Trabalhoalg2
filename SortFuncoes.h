@@ -18,7 +18,7 @@ Passageiro RemoveHeap(Passageiro vetor[N],int *tam, int *comparacoes, int *troca
 
 void Heapfy(Passageiro vetor[N],int tam, int *comparacoes, int *trocas); //mostrar numero de comparações e trocas
 
-void ChecaHeap(Passageiro vetor[N]);
+int ChecaHeap(Passageiro vetor[], int tam);
 
 void ImprimeHeap(Passageiro vetor[N], int tam);
 

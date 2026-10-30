@@ -22,15 +22,16 @@ int main(){
     IniciaHeap(&tam);
     aleatorizar_vetor(vetor_prioridades);
 
-    while (opcao != 5){
+    while (opcao != 6){
 
         printf("__________________________________________________________\n");
         printf("Inserir passageiro                                    [0] \n"
                "Remover passageiro (Embarcar no avião)                [1] \n"
                "Imprimir passageiros que ainda vão embarcar           [2] \n"
                "Imprimir passageiros por prioridade (Heapsort)        [3] \n"
-               "Comparar 3 sorts diferentes para 1024 elementos       [4] \n"
-               "Sair do programa                                      [5] \n"
+               "Checa heap                                            [4] \n"
+               "Comparar 3 sorts diferentes para 1024 elementos       [5] \n"
+               "Sair do programa                                      [6] \n"
                 " \n"
                "O que você deseja fazer: ");
 
@@ -47,7 +48,7 @@ int main(){
         switch (opcao){
 
             // Inserir passageiro
-            case 0:
+            case 0: {
     
                 Passageiro p;
 
@@ -63,20 +64,21 @@ int main(){
                 InsereHeap(heap, &tam, p, &comparacoes, &trocas);
 
                 break;
-
+            }
             // Remover passageiro
-            case 1:
+            case 1: {
                 printf("O passageiro %s embarcou no avião | Prioridade: %d\n", heap[1].Nome, heap[1].Prioridade);
                 RemoveHeap(heap, &tam, &comparacoes, &trocas);
                 break;
 
+            }
             // Imprime passageiros que ainda vão embarcar
-            case 2:
+            case 2: {
                 ImprimeHeap(heap, tam);
                 break;
-
+            }
             // Imprime passageiros por prioridade (Heapsort)
-            case 3:
+            case 3: {
 
                 Passageiro copia[N+1];
                 
@@ -91,9 +93,20 @@ int main(){
                 for (int i = tam; i >= 1; i--)
                     printf("Nome: %s | Prioridade: %d\n", copia[i].Nome, copia[i].Prioridade);
                 break; 
+            }
+
+            // Checa se é um heap
+            case 4: {
+                if (ChecaHeap(heap, tam)) {
+                    printf("O vetor é um heap válido.\n");
+                } else {
+                    printf("O vetor não é um heap válido.\n");
+                }
+                break;
+            }
 
             // Compara 3 sorts diferentes para 1024 elementos 
-            case 4:
+            case 5: {
 
                 int vetor_comparacao[tamanho+1];
                 int vetor_heap[tamanho+1];
@@ -132,17 +145,17 @@ int main(){
                 printf("O numero de trocas no Insertsort foi: %d\n\n", trocas_insert);
 
                 break;
-
+            }
             // Sai do programa
-            case 5:
+            case 6:{
                 printf("Saindo do programa...\n");
                 break;
-
+            }
             // Caso usuário digite uma opção inválida
-            default:
-                printf("Opção inválida. Por favor digite um número entre 0 e 5.\n");
+            default:{
+                printf("Opção inválida. Por favor digite um número entre 0 e 6.\n");
                 break;
-
+            }
         }
     }
 
