@@ -3,8 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Log de Testes</title>
+    <style>
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-size: 25px;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-top: 0px;
+        }
+
+        h3 {
+            font-size: 17px;
+            margin-top: 32px;
+        }
+
+        h4 {
+            margin-top: 24px;
+        }
+
+        h5{
+            font-size: 22px;
+            
+        }
+
+        p {
+            margin-top: 0;
+        }
+
+        pre {
+            font-size: 16px;
+            border: 1px solid #000;
+            padding: 12px;
+            overflow-x: auto;
+        }
+
+        a {
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
+
     <h1>Log dos Testes Executados</h1>
     
     <h2>Teste de Inserção (opção 0)</h2>
@@ -21,8 +75,8 @@
         
         O que você deseja fazer: 0
         __________________________________________________________
-        Nome: Kojima
-        A prioridade de embarque de Kojima é 464
+        Nome: Felipe
+        A prioridade de embarque de Felipe é 341
         __________________________________________________________
         Inserir passageiro                                    [0] 
         Remover passageiro (Embarcar no avião)                [1] 
@@ -35,9 +89,8 @@
         
         O que você deseja fazer: 0
         __________________________________________________________
-        Nome: Felipe
-        A prioridade de embarque de Felipe é 327
-        __________________________________________________________
+        Nome: Kojima
+        A prioridade de embarque de Kojima é 29
 
 
     </pre>
@@ -56,14 +109,229 @@
         
         O que você deseja fazer: 2
         __________________________________________________________
-        Nome: Kojima | Prioridade: 464
-        Nome: Felipe | Prioridade: 327
-        __________________________________________________________
+        Nome: Felipe | Prioridade: 341
+        Nome: Kojima | Prioridade: 29
 
     </pre>
 
-    <h2>Teste de remoção de passageiros (Opção 1)</h2>
-    <pre>...</pre>
+    <h2>Teste de remoção/embarque de passageiros (Opção 1)</h2>
+    <pre>
+        __________________________________________________________
+        Inserir passageiro                                    [0] 
+        Remover passageiro (Embarcar no avião)                [1] 
+        Imprimir passageiros que ainda vão embarcar           [2] 
+        Imprimir passageiros por prioridade (Heapsort)        [3] 
+        Checa se heap é valido                                [4] 
+        Comparar 3 sorts diferentes para 1024 elementos       [5] 
+        Preenche avião automaticamente (Heapfy)               [6] 
+        Sair do programa                                      [7] 
+        
+        O que você deseja fazer: 1
+        __________________________________________________________
+        O passageiro Felipe embarcou | Prioridade: 341
+
+    </pre>
+
+    <h2>Impressão de passageiros por prioridade (opção 3)</h2>
+
+    <h4>Adicionando 3 novos passageiros na seguinte ordem: Pedro (Prioridade 313), João (Prioridade 588), Angelo (Prioridade 852), e imprimindo por prioridade utilizando o Heapsort: </h4>
+
+    <pre>
+        __________________________________________________________
+        Inserir passageiro                                    [0] 
+        Remover passageiro (Embarcar no avião)                [1] 
+        Imprimir passageiros que ainda vão embarcar           [2] 
+        Imprimir passageiros por prioridade (Heapsort)        [3] 
+        Checa se heap é valido                                [4] 
+        Comparar 3 sorts diferentes para 1024 elementos       [5] 
+        Preenche avião automaticamente (Heapfy)               [6] 
+        Sair do programa                                      [7] 
+        
+        O que você deseja fazer: 3
+        __________________________________________________________
+        Heapfy: 3 comparações e 0 trocas.
+        O numero de comparacoes no Heapsort foi: 6
+        O numero de trocas no Heapsort foi: 4
+        ___________________________________________________________
+        Nome: Angelo | Prioridade: 852
+        Nome: João | Prioridade: 588
+        Nome: Pedro | Prioridade: 313
+        Nome: Kojima | Prioridade: 29
+
+    </pre>
+
+    <h2>Checa se o Heap é valido (opção 4)</h2>
+
+    <pre>
+        __________________________________________________________
+        Inserir passageiro                                    [0] 
+        Remover passageiro (Embarcar no avião)                [1] 
+        Imprimir passageiros que ainda vão embarcar           [2] 
+        Imprimir passageiros por prioridade (Heapsort)        [3] 
+        Checa se heap é valido                                [4] 
+        Comparar 3 sorts diferentes para 1024 elementos       [5] 
+        Preenche avião automaticamente (Heapfy)               [6] 
+        Sair do programa                                      [7] 
+        
+        O que você deseja fazer: 4
+        __________________________________________________________
+        O vetor é um heap.
+
+    </pre>
+
+    <h2>Preenche todos os lugares do avião utilizando heapfy (opção 6)</h2>
+
+    <pre>
+        __________________________________________________________
+        Inserir passageiro                                    [0] 
+        Remover passageiro (Embarcar no avião)                [1] 
+        Imprimir passageiros que ainda vão embarcar           [2] 
+        Imprimir passageiros por prioridade (Heapsort)        [3] 
+        Checa se heap é valido                                [4] 
+        Comparar 3 sorts diferentes para 1024 elementos       [5] 
+        Preenche avião automaticamente (Heapfy)               [6] 
+        Sair do programa                                      [7] 
+        
+        O que você deseja fazer: 6
+        __________________________________________________________
+        848 passageiros adicionados. Heap com 852 passageiros.
+        Heapfy: 1593 comparações e 640 trocas.
+        O vetor é um heap válido? Sim
+
+    </pre>
+
+    <h2>Comparações entre cada tipo de Sort (opção 5)</h2>
+
+    <pre>
+        __________________________________________________________
+        Inserir passageiro                                    [0] 
+        Remover passageiro (Embarcar no avião)                [1] 
+        Imprimir passageiros que ainda vão embarcar           [2] 
+        Imprimir passageiros por prioridade (Heapsort)        [3] 
+        Checa se heap é valido                                [4] 
+        Comparar 3 sorts diferentes para 1024 elementos       [5] 
+        Preenche avião automaticamente (Heapfy)               [6] 
+        Sair do programa                                      [7] 
+        
+        O que você deseja fazer: 5
+        __________________________________________________________
+        O numero de comparações no Heapsort foi: 17303
+        O numero de trocas no Heapsort foi: 9315
+
+        O numero de comparações no Quicksort foi: 23331
+        O numero de trocas no Quicksort foi: 2734
+
+        O numero de comparações no Insertsort foi: 262030
+        O numero de trocas no Insertsort foi: 261007
+
+        Quem fez menos comparacoes foi o Heapsort
+        Quem fez menos trocas foi o Quicksort
+
+    </pre>
+
+    <h2> Sair do programa (opção 7)</h2>
+
+    <pre>
+        __________________________________________________________
+        Inserir passageiro                                    [0] 
+        Remover passageiro (Embarcar no avião)                [1] 
+        Imprimir passageiros que ainda vão embarcar           [2] 
+        Imprimir passageiros por prioridade (Heapsort)        [3] 
+        Checa se heap é valido                                [4] 
+        Comparar 3 sorts diferentes para 1024 elementos       [5] 
+        Preenche avião automaticamente (Heapfy)               [6] 
+        Sair do programa                                      [7] 
+        
+        O que você deseja fazer: 7
+        __________________________________________________________
+        Saindo do programa
+        sh-5.3$ 
+    </pre>
+
+    <h1>Prevenção contra erros do usuario</h1>
+
+    <h2>Caso tente adicionar um passageiro enquanto o avião (heap) já está cheio</h2>
+    <pre>
+        __________________________________________________________
+        Inserir passageiro                                    [0] 
+        Remover passageiro (Embarcar no avião)                [1] 
+        Imprimir passageiros que ainda vão embarcar           [2] 
+        Imprimir passageiros por prioridade (Heapsort)        [3] 
+        Checa se heap é valido                                [4] 
+        Comparar 3 sorts diferentes para 1024 elementos       [5] 
+        Preenche avião automaticamente (Heapfy)               [6] 
+        Sair do programa                                      [7] 
+        
+        O que você deseja fazer: 6
+        __________________________________________________________
+        853 passageiros adicionados. Heap com 853 passageiros.
+        Heapfy: 1600 comparações e 625 trocas.
+        O vetor é um heap válido? Sim
+        __________________________________________________________
+        Inserir passageiro                                    [0] 
+        Remover passageiro (Embarcar no avião)                [1] 
+        Imprimir passageiros que ainda vão embarcar           [2] 
+        Imprimir passageiros por prioridade (Heapsort)        [3] 
+        Checa se heap é valido                                [4] 
+        Comparar 3 sorts diferentes para 1024 elementos       [5] 
+        Preenche avião automaticamente (Heapfy)               [6] 
+        Sair do programa                                      [7] 
+        
+        O que você deseja fazer: 0
+        __________________________________________________________
+        O Avião está cheio. Não é possível embarcar mais passageiros.
+    </pre>
+
+    <h2>Caso ele digite uma letra ou palavra na hora de escolher uma opção</h2>
+    <pre>
+        __________________________________________________________
+        Inserir passageiro                                    [0] 
+        Remover passageiro (Embarcar no avião)                [1] 
+        Imprimir passageiros que ainda vão embarcar           [2] 
+        Imprimir passageiros por prioridade (Heapsort)        [3] 
+        Checa se heap é valido                                [4] 
+        Comparar 3 sorts diferentes para 1024 elementos       [5] 
+        Preenche avião automaticamente (Heapfy)               [6] 
+        Sair do programa                                      [7] 
+        
+        O que você deseja fazer: Insere
+        __________________________________________________________
+        Entrada invalida! Por favor, digite apenas numeros.
+    </pre>
+
+    <h2>Caso digite um número que não está dentro das opções</h2>
+    <pre>
+        __________________________________________________________
+        Inserir passageiro                                    [0] 
+        Remover passageiro (Embarcar no avião)                [1] 
+        Imprimir passageiros que ainda vão embarcar           [2] 
+        Imprimir passageiros por prioridade (Heapsort)        [3] 
+        Checa se heap é valido                                [4] 
+        Comparar 3 sorts diferentes para 1024 elementos       [5] 
+        Preenche avião automaticamente (Heapfy)               [6] 
+        Sair do programa                                      [7] 
+        
+        O que você deseja fazer: 8
+        __________________________________________________________
+        Opção inválida. Por favor digite um número entre 0 e 7.
+    </pre>
+
+
+    <h2>Testes de algortimos de ordenação</h2>
+
+    <h4>Foram realizados 5 testes com todos os algoritimos ao mesmo tempo e o número medio de comparações e trocas para cada um foi:</h4>
+    <pre>
+        HeapSort (Comparações): 17308
+        HeapSort (Trocas): 9316
+
+        QuickSort (Comparações): 23333
+        QuickSort (Trocas): 2703
+
+        InsertSort (Comparações): 262703
+        InsertSort (Trocas): 261884
+
+    </pre>
+    <h4>Como resultado final, o HeapSort foi o que teve o menor número de comparações, o QuickSort teve o menor número de trocas, enquanto o InsertSort foi o que teve o maior número de trocas e comparações</h4>
 
     <br>
     <a href="index.html">Voltar para a página principal</a>
