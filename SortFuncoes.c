@@ -52,39 +52,32 @@ void Heapfy(Passageiro vetor[N], int tam, int *comparacoes, int *trocas) {
     }
 }
 
-void ChecaHeap(Passageiro vetor[N]){
+int ChecaHeap(Passageiro vetor[], int tam){
     int i;
-    int eh_heap = 1; //o bool de c, assumo que é true até provar o contrario
-                     //É ao contrário (fonte: confia)
 
-    for (i = 1; i <= N / 2; i++) {
+    for (i = 1; i <= tam / 2; i++) {
         int filho_esq = 2 * i;
         int filho_dir = 2 * i + 1;
 
-        if (filho_esq <= N) {
+        if (filho_esq <= tam) {
             if (vetor[i].Prioridade < vetor[filho_esq].Prioridade) {
-                eh_heap = 0;
-                break;
+                return 0;
             }
         }
 
-        if (filho_dir <= N) {
+        if (filho_dir <= tam) {
             if (vetor[i].Prioridade < vetor[filho_dir].Prioridade) {
-                eh_heap = 0;
-                break;
+                return 0;
             }
         }
     }
+    return 1;
 }
-
-void ImprimeHeap(Passageiro vetor[N], int tam, int *comparacoes, int *trocas) {
-    /*função que imprime Nome e prioridade de um Heap que ainda devem ser embarcados, como essa função pode ser 
-    chamada a qualque momento,colocamos o Heapfy nela para ordenar o Heap atual*/
-    Heapfy(vetor,tam, comparacoes, trocas);
+/*função que imprime Nome e prioridade de um Heap que ainda devem ser embarcados*/
+void ImprimeHeap(Passageiro vetor[N], int tam) {
     int i;
     for (i = 1; i <= tam; i++){
-        printf("Nome: %s\n", vetor[i].Nome);
-        printf("Prioridade: %d\n", vetor[i].Prioridade);
+        printf("Nome: %s | Prioridade: %d\n", vetor[i].Nome, vetor[i].Prioridade);
     }
 }
 
@@ -120,6 +113,7 @@ void HeapSort(Passageiro vetor[N], int tam, int *comparacoes, int *trocas) {
     Passageiro aux;
 
     Heapfy(vetor, tam, comparacoes, trocas);
+    printf("Heapfy: %d comparações e %d trocas.\n", *comparacoes, *trocas);
 
     for (int i = tam; i > 1; i--) {
         aux = vetor[1];
@@ -132,6 +126,7 @@ void HeapSort(Passageiro vetor[N], int tam, int *comparacoes, int *trocas) {
 
     printf("O numero de comparacoes no Heapsort foi: %d\n", *comparacoes);
     printf("O numero de trocas no Heapsort foi: %d\n", *trocas);
+    printf("___________________________________________________________\n");
 }
 
 int MaiorIgual(int a, int b, int *comparacoes) {
@@ -145,51 +140,72 @@ int MenorIgual(int a, int b, int *comparacoes) {
 }
 
 void particao(int vetor[Test], int esq,int dir,int *pos_pivo,int *comparacoes_quick, int *trocas_quick){
-    //o codigo ficou tão menor depois de tirar a struct dele...
-    int i,j,aux;
-    int pivo; 
+    int i, j, aux;
+    int pivo;
 
     int comeco = esq;
     int fim = dir;
-    int meio = (esq + dir)/2; //c ja da o floor automatico
-    int mediana; //graças a contagem de comparações,tive que mudar os if e else
-    
-    //começo como mediana
-    if ((MaiorIgual(comeco,fim,comparacoes_quick) && MenorIgual(comeco,meio,comparacoes_quick)) ||
-        (MenorIgual(comeco,fim,comparacoes_quick) && MaiorIgual(comeco,meio,comparacoes_quick)))
+    int meio = (esq + dir) / 2;
+    int mediana;
+
+    // Escolhe a mediana entre o primeiro, o do meio e o último
+    if ((MaiorIgual(vetor[comeco], vetor[fim], comparacoes_quick) && MenorIgual(vetor[comeco], vetor[meio], comparacoes_quick)) ||
+        (MenorIgual(vetor[comeco], vetor[fim], comparacoes_quick) && MaiorIgual(vetor[comeco], vetor[meio], comparacoes_quick)))
         mediana = comeco;
-    //meio como mediana
-    else if ((MaiorIgual(meio,fim,comparacoes_quick) && MenorIgual(meio,comeco,comparacoes_quick)) ||
-         (MenorIgual(meio,fim,comparacoes_quick) && MaiorIgual(meio,comeco,comparacoes_quick))) //meio como mediana
+    else if ((MaiorIgual(vetor[meio], vetor[fim], comparacoes_quick) && MenorIgual(vetor[meio], vetor[comeco], comparacoes_quick)) ||
+             (MenorIgual(vetor[meio], vetor[fim], comparacoes_quick) && MaiorIgual(vetor[meio], vetor[comeco], comparacoes_quick)))
         mediana = meio;
-    else //fim como mediana
+    else
         mediana = fim;
-        
-    //colocamos a mediana no começo para trabalharmos com o quicksort normal,como se o primeiro elemento fosse o pivo
-    aux = vetor[mediana];
-    vetor[mediana] = vetor[esq];
-    vetor[esq] = aux;
-    (*trocas_quick)++;
+
+    // Coloca a mediana na primeira posição (só conta troca se as posições forem diferentes)
+    if (mediana != esq) {
+        aux = vetor[mediana];
+        vetor[mediana] = vetor[esq];
+        vetor[esq] = aux;
+        (*trocas_quick)++;
+    }
 
     pivo = vetor[esq];
     i = esq;
     j = dir;
-    while (i < j){
-        while((vetor[i] <= pivo) && (i < dir))
+
+    while (1) {
+        if (i >= j)
+            break;
+
+        while (1) {
+            (*comparacoes_quick)++;      // vetor[i] <= pivo ?
+            if (!(vetor[i] <= pivo))
+                break;
+
+            if (!(i < dir))
+                break;
             i++;
-        while(vetor[j] > pivo)
-            j--; //pior caso para no pivo
-        if (i < j){
+        }
+
+        while (1) {
+            (*comparacoes_quick)++;      // vetor[j] > pivo ?
+            if (!(vetor[j] > pivo))
+                break;
+            j--;
+        }
+
+        if (i < j) {
             aux = vetor[j];
             vetor[j] = vetor[i];
             vetor[i] = aux;
             (*trocas_quick)++;
         }
     }
-    vetor[esq] = vetor[j];
-    vetor[j] = pivo;
+
+    // Coloca o pivô na posição final (só conta troca se ele realmente mudar de lugar)
+    if (j != esq) {
+        vetor[esq] = vetor[j];
+        vetor[j] = pivo;
+        (*trocas_quick)++;
+    }
     *pos_pivo = j;
-    (*trocas_quick)++;
 }
 
 void QuickSort(int vetor[Test], int esq, int dir, int *comparacoes_quick, int *trocas_quick){

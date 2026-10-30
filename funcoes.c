@@ -73,16 +73,35 @@ void HeapSortInt(int vetor[tamanho], int *contador, int *trocas) {
     
     int aux;
 
-    HeapfyInt(vetor, N, contador, trocas);
+    HeapfyInt(vetor, tamanho, contador, trocas);
 
-    for (int i = N; i > 1; i--) {
+    for (int i = tamanho; i > 1; i--) {
         aux = vetor[1];
         vetor[1] = vetor[i];
         vetor[i] = aux;
 
         (*trocas)++;
 
-        SacodeHeapInt(vetor, 1, i - 1,
-                      contador, trocas);
+        SacodeHeapInt(vetor, 1, i - 1, contador, trocas);
+    }
+}
+
+void menos_trocas(int trocas_heap, int trocas_quick, int trocas_insert){
+     if (trocas_heap <= trocas_quick && trocas_heap <= trocas_insert) {
+        printf("Quem fez menos trocas foi o Heapsort\n");
+    } else if (trocas_quick <= trocas_heap && trocas_quick <= trocas_insert) {
+        printf("Quem fez menos trocas foi o Quicksort\n");
+    } else {
+        printf("Quem fez menos trocas foi o Insertsort\n");
+    }
+}
+
+void menos_comparacoes(int comparacoes_heap, int comparacoes_quick, int comparacoes_insert){
+    if (comparacoes_heap <= comparacoes_quick && comparacoes_heap <= comparacoes_insert) {
+        printf("Quem fez menos comparacoes foi o Heapsort\n");
+    } else if (comparacoes_quick <= comparacoes_heap && comparacoes_quick <= comparacoes_insert) {
+        printf("Quem fez menos comparacoes foi o Quicksort\n");
+    } else {
+        printf("Quem fez menos comparacoes foi o Insertsort\n");
     }
 }

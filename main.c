@@ -22,16 +22,17 @@ int main(){
     IniciaHeap(&tam);
     aleatorizar_vetor(vetor_prioridades);
 
-    while (opcao != 6){
+    while (opcao != 7){
 
         printf("__________________________________________________________\n");
         printf("Inserir passageiro                                    [0] \n"
                "Remover passageiro (Embarcar no avião)                [1] \n"
                "Imprimir passageiros que ainda vão embarcar           [2] \n"
-               "Heapsort                                              [3] \n"
-               "Imprimir passageiros por prioridade                   [4] \n"
+               "Imprimir passageiros por prioridade (Heapsort)        [3] \n"
+               "Checa se heap é valido                                [4] \n"
                "Comparar 3 sorts diferentes para 1024 elementos       [5] \n"
-               "Sair do programa                                      [6] \n"
+               "Preenche avião automaticamente (Heapfy)               [6] \n"
+               "Sair do programa                                      [7] \n"
                 " \n"
                "O que você deseja fazer: ");
 
@@ -46,10 +47,15 @@ int main(){
         printf("__________________________________________________________\n");
             
         switch (opcao){
+
             // Inserir passageiro
-            case 0:
-                //considerando que teremos que colocar 1 por 1,talvez tenha sido um erro ter mais de 800...
-                //Então, acho que na hora de mandar pro professor a gente diminui ou faz alguma coisa pra não precisar colocar um por um
+            case 0: {
+                
+                if (proximo > N) {
+                    printf("O Avião está cheio. Não é possível embarcar mais passageiros.\n");
+                    break;
+                }
+
                 Passageiro p;
 
                 printf("Nome: ");
@@ -64,28 +70,67 @@ int main(){
                 InsereHeap(heap, &tam, p, &comparacoes, &trocas);
 
                 break;
+            }
+            // Remover passageiro
+            case 1: {
 
-            case 1:
-                printf("O passageiro %s embarcou no avião | Prioridade: %d\n", heap[1].Nome, heap[1].Prioridade);
-                RemoveHeap(heap, &tam, &comparacoes, &trocas);
+                // Verifica se o heap está vazio 
+                if (tam == 0) {
+                    printf("Nenhum passageiro na fila de embarque.\n");
+                    break; 
+                }
+
+                Passageiro r = RemoveHeap(heap, &tam, &comparacoes, &trocas);
+                printf("O passageiro %s embarcou | Prioridade: %d\n", r.Nome, r.Prioridade);
+
                 break;
 
-            case 2:
-                ImprimeHeap(heap, tam, &comparacoes, &trocas);
+            }
+            // Imprime passageiros que ainda vão embarcar
+            case 2: {
+                if (tam == 0) {
+                    printf("Nenhum passageiro na fila de embarque.\n");
+                    break; 
+                }
+
+                ImprimeHeap(heap, tam);
                 break;
+            }
+            // Imprime passageiros por prioridade (Heapsort)
+            case 3: {
+                if (tam == 0) {
+                    printf("Nenhum passageiro na fila de embarque.\n");
+                    break; 
+                }
 
-            case 3:
-                HeapSort(heap, tam, &comparacoes, &trocas);
-                break;  
+                Passageiro copia[N+1];
+                
+                for (int i = 1; i <= tam; i++) {
+                    copia[i] = heap[i];
+                }
 
-            case 4:
-                Heapfy(heap, tam, &comparacoes, &trocas);
-                ImprimeHeap(heap, tam, &comparacoes, &trocas);
+                int comp = 0;
+                int tr = 0;
+
+                HeapSort(copia, tam, &comp, &tr); 
+                for (int i = tam; i >= 1; i--)
+                    printf("Nome: %s | Prioridade: %d\n", copia[i].Nome, copia[i].Prioridade);
+                break; 
+
+            }
+
+            // Checa se é um heap
+            case 4: {
+                if (ChecaHeap(heap, tam)) {
+                    printf("O vetor é um heap válido.\n");
+                } else {
+                    printf("O vetor não é um heap válido.\n");
+                }
                 break;
+            }
 
-            //Compara 3 sorts diferentes para 1024 elementos 
-            //Ainda precisa conferir o que é considerado troca em cada sort, mas comparações já esta certo
-            case 5:
+            // Compara 3 sorts diferentes para 1024 elementos 
+            case 5: {
 
                 int vetor_comparacao[tamanho+1];
                 int vetor_heap[tamanho+1];
@@ -107,33 +152,67 @@ int main(){
 
                 HeapSortInt(vetor_heap, &comparacoes_heap, &trocas_heap);
                 printf("O numero de comparações no Heapsort foi: %d\n", comparacoes_heap);
-                printf("O numero de trocas no Heapsort foi: %d\n", trocas_heap);
+                printf("O numero de trocas no Heapsort foi: %d\n\n", trocas_heap);
 
                 int comparacoes_quick = 0;
                 int trocas_quick = 0;
 
                 QuickSort(vetor_quick, 1, tamanho, &comparacoes_quick, &trocas_quick);
                 printf("O numero de comparações no Quicksort foi: %d\n", comparacoes_quick);
-                printf("O numero de trocas no Quicksort foi: %d\n", trocas_quick);
+                printf("O numero de trocas no Quicksort foi: %d\n\n", trocas_quick);
 
                 int comparacoes_insert = 0;
                 int trocas_insert = 0;
 
                 InsertSort(vetor_insert, &comparacoes_insert, &trocas_insert);
                 printf("O numero de comparações no Insertsort foi: %d\n", comparacoes_insert);
-                printf("O numero de trocas no Insertsort foi: %d\n", trocas_insert);
+                printf("O numero de trocas no Insertsort foi: %d\n\n", trocas_insert);
+
+                menos_comparacoes(comparacoes_heap, comparacoes_quick, comparacoes_insert);
+                menos_trocas(trocas_heap, trocas_quick, trocas_insert);
 
                 break;
+            }
+           
+            // Preenche os assentos restantes sem usar InsereHeap e depois aplica Heapfy
+            case 6: {
+                int livres = N - (proximo - 1);   // prioridades ainda não distribuídas
 
-            //Sai do programa
-            case 6:
+                if (livres <= 0) {
+                    printf("O Avião está cheio. Não há assentos livres.\n");
+                    break;
+                }
+
+                for (int k = 0; k < livres; k++) {
+                    Passageiro p;
+                    snprintf(p.Nome, sizeof(p.Nome), "Passageiro %d", proximo);
+                    p.Prioridade = vetor_prioridades[proximo];
+                    proximo++;
+
+                    tam++;
+                    heap[tam] = p;               // só coloca no vetor, sem organizar
+                }
+
+                int comp = 0;
+                int tr = 0;
+                Heapfy(heap, tam, &comp, &tr);
+
+                printf("%d passageiros adicionados. Heap com %d passageiros.\n", livres, tam);
+                printf("Heapfy: %d comparações e %d trocas.\n", comp, tr);
+                printf("O vetor é um heap válido? %s\n", ChecaHeap(heap, tam) ? "Sim" : "Não");
+                break;
+            }
+
+            // Sai do programa
+            case 7:{
                 printf("Saindo do programa...\n");
                 break;
-
-            default:
-                printf("Opção inválida. Por favor digite um número entre 0 e 6.\n");
+            }
+            // Caso usuário digite uma opção inválida
+            default:{
+                printf("Opção inválida. Por favor digite um número entre 0 e 7.\n");
                 break;
-
+            }
         }
     }
 

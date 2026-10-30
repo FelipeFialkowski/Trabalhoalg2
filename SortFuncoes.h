@@ -6,8 +6,8 @@
 #include <string.h>
 
 typedef struct {
-    char Nome[50]; //Se o nome passar de 50 caracteres,pedir para usuario escolher um Nome menor?
-    int Prioridade; //a prioridade vai de 1 a 853 por que usamos como base o numero de acentos em um Airbus A380
+    char Nome[50]; 
+    int Prioridade; 
 }Passageiro;
 
 void IniciaHeap(int *tam);
@@ -18,13 +18,17 @@ Passageiro RemoveHeap(Passageiro vetor[N],int *tam, int *comparacoes, int *troca
 
 void Heapfy(Passageiro vetor[N],int tam, int *comparacoes, int *trocas); //mostrar numero de comparações e trocas
 
-void ChecaHeap(Passageiro vetor[N]);
+int ChecaHeap(Passageiro vetor[], int tam);
 
-void ImprimeHeap(Passageiro vetor[N], int tam, int *comparacoes, int *trocas);
+void ImprimeHeap(Passageiro vetor[N], int tam);
 
 void SacodeHeap(Passageiro vetor[N], int raiz, int tam, int *comparacoes, int *trocas); //mostrar numero de comparações e trocas
 
 void HeapSort(Passageiro vetor[N], int tam, int *comparacoes, int *trocas); //mostrar numero de comparações e trocas(verificar depois se esta certo)
+
+int MaiorIgual(int a, int b, int *comparacoes);
+
+int MenorIgual(int a, int b, int *comparacoes);
 
 void particao(int vetor[Test], int esq, int dir, int *pos_pivo, int *comparacoes_quick, int *trocas_quick);
 
