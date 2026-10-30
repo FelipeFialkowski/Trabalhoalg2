@@ -4,9 +4,9 @@
 #include "funcoes.h"
 #include "SortFuncoes.h"
 
-void vetor_aleatorio_1024(int vetor_comparacao[]){
+void criar_vetor_aleatorio(int vetor_comparacao[]){
 
-    for (int i = 0; i < 1024; i ++){
+    for (int i = 1; i <= 1024; i ++){
         vetor_comparacao[i] = rand() % 1024;
     }
 }
@@ -14,14 +14,14 @@ void vetor_aleatorio_1024(int vetor_comparacao[]){
 void aleatorizar_vetor(int vetor_prioridades[]){
 
     // Preenche o vetor com numeros de 1 até N
-    for (int i = 0; i < N; i ++){
-        vetor_prioridades[i] = i + 1;
+    for (int i = 1; i <= N; i ++){
+        vetor_prioridades[i] = i;
     }
 
     // Embaralha o vetor de maneira aleatória
-    for (int i = N - 1; i > 0; i --){
+    for (int i = N ; i > 1; i --){
 
-        int pos = rand () % (i + 1);
+        int pos = 1 + rand () % i;
 
         int aux = vetor_prioridades[i];
         vetor_prioridades[i] = vetor_prioridades[pos];
@@ -31,15 +31,58 @@ void aleatorizar_vetor(int vetor_prioridades[]){
 
 }
 
-int mediana(int vetor[], int inicio, int fim){
+void SacodeHeapInt(int vetor[tamanho], int raiz, int tam, int *contador, int *trocas) {
+    int filho;
+    int aux;
 
-    int meio = inicio + (fim - inicio) / 2;
+    while (raiz * 2 <= tam) {
+        filho = raiz * 2;
 
-    if ((vetor[inicio] > vetor[meio]) != (vetor[inicio] > vetor[fim-1])) {
-        return 0;
-    } else if ((vetor[meio] > vetor[inicio]) != (vetor[meio] > vetor[fim-1])) {
-        return meio;
-    } else {
-        return fim-1;
+        // Escolhe o maior filho
+        if (filho < tam) {
+            (*contador)++;
+
+            if (vetor[filho] < vetor[filho + 1]) {
+                filho++;
+            }
+        }
+
+        // Compara o pai com o maior filho
+        (*contador)++;
+
+        if (vetor[raiz] < vetor[filho]) {
+            aux = vetor[raiz];
+            vetor[raiz] = vetor[filho];
+            vetor[filho] = aux;
+
+            (*trocas)++;
+            raiz = filho;
+        } else {
+            break;
+        }
+    }
+}
+
+void HeapfyInt(int vetor[tamanho], int tam, int *contador, int *trocas) {
+    for (int i = tam / 2; i >= 1; i--) {
+        SacodeHeapInt(vetor, i, tam, contador, trocas);
+    }
+}
+
+void HeapSortInt(int vetor[tamanho], int *contador, int *trocas) {
+    
+    int aux;
+
+    HeapfyInt(vetor, N, contador, trocas);
+
+    for (int i = N; i > 1; i--) {
+        aux = vetor[1];
+        vetor[1] = vetor[i];
+        vetor[i] = aux;
+
+        (*trocas)++;
+
+        SacodeHeapInt(vetor, 1, i - 1,
+                      contador, trocas);
     }
 }
