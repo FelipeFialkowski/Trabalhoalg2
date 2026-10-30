@@ -90,14 +90,12 @@ void SacodeHeap(Passageiro vetor[N], int raiz, int tam, int *comparacoes, int *t
 
         if (filho < tam) {
             (*comparacoes)++;
-            if (vetor[filho].Prioridade <
-                vetor[filho + 1].Prioridade) {
+            if (vetor[filho].Prioridade < vetor[filho + 1].Prioridade) {
                 filho++;
             }
         }
         (*comparacoes)++;
-        if (vetor[raiz].Prioridade <
-            vetor[filho].Prioridade) {
+        if (vetor[raiz].Prioridade < vetor[filho].Prioridade) {
             aux = vetor[raiz];
             vetor[raiz] = vetor[filho];
             vetor[filho] = aux;
