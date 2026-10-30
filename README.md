@@ -34,24 +34,24 @@ kojima - finalização da montagem do insert e do quick sort adaptados para cont
 **Funcionamente do programa**
 
 **main.c**
-    Dentro da main temos apenas o menu de opções assim como a inicialização de um vetor Heap de tamanho vazio utilizando da função InciaHeap,além também da criação de uma ordem aleatória para todos os elementos dos indices de N que vão de 1 até 853, esse numero foi escolhido pois é o mesmo numero de acentos do maior avião ja registrado.
-    Dentro do menu de execução do programa temos um while que termina quando o usuario escolhe a opção de sair, as opções do menu foram feitas usando um case of que vai de 0 até 7(7 sai do programa encerrando o while)
+    Dentro da main temos apenas o menu de opções assim como a inicialização de um vetor Heap de tamanho vazio utilizando da função InciaHeap,além também da criação deuma ordem aleatória para todos os elementos dos indices de N que vão de 1 até 853, esse numero foi escolhido pois é o mesmo numero de acentos do maior avião ja registrado.
+    Dentro do menu de execução do programa temos um while que termina quando o usuario escolhe a opção de sair, as opções do menu foram feitas usando um case of que vai de 0 até 7(7 sai do programa encerrando o while) <br>
 
-0 - Inserir Passageiro: ele cria uma struct passageiro que recebe o nome e a prioridade aleatória e que é colocado como parâmetro no insere heap
+0 - Inserir Passageiro: Cria uma struct passageiro que recebe o nome e a prioridade aleatória e que é colocado como parâmetro no insere heap. <br>
 
-1 - Ele verifica se o Heap é vazio e caso não seja, remove o primeiro elemento do vetor(explicação do por que esta no RemoveHeap abaixo)
+1 - Remover Passageiro: Verifica se o heap é vazio, caso não seja o primeiro elemento é removido do vetor(explicação do por que esta no RemoveHeap abaixo). <br>
 
-2 - ele imprime os passageiros que ainda devem embarcar, ordenados em Heap.
+2 - Imprimir passageiros: Imprime os passageiros que ainda devem embarcar, ordenados em Heap.
 
-3 - ele cópia o heap e ordena ele com o heapsort e imprime ele ordenado e imprime as comparações e trocas do heapfy e do heap sort.
+3 - Imprime por prioridade: Cria uma copia do heap e deixa ele ordenado com HeapSort, logo em seguida o imprime, além disso é imprimido as comparações e trocas do heapfy e do heap sort.
 
-4 - Checa se o Heap atual é valido ou não
+4 - Checa heap: verifica se o Heap atual é valido ou não.
 
-5 - Ele compara o Heapsort,QuickSort e InsertSort, devolvendo o numero de comparações e trocas dos 3 ainda dizendo quem fez em menos comparações e quem fez em menos trocas
+5 - Comparar Sorts: Compara o Heapsort,QuickSort e InsertSort, devolvendo o numero de comparações e trocas dos 3, também informa quem fez menos comparações e menos trocas.
 
-6 - Cria um vetor ja com todos os acentos preenchidos e aplica Heapfy neles(explicação abaixo do que o Heapfy faz)
+6 - Cria um vetor com todos os lugares preenchidos e aplica Heapfy neles(explicação abaixo do que o Heapfy faz).
 
-7 - Ele sai do programa encerrando o while
+7 - Ele sai do programa encerrando o while.
 
 **SortFuncoes.c**
     Dentro da SortFuncoes temos quase todoas as funções que são utilizadas ao longo do programa
