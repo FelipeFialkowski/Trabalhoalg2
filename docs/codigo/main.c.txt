@@ -122,9 +122,9 @@ int main(){
             // Checa se é um heap
             case 4: {
                 if (ChecaHeap(heap, tam)) {
-                    printf("O vetor é um heap válido.\n");
+                    printf("O vetor é um heap.\n");
                 } else {
-                    printf("O vetor não é um heap válido.\n");
+                    printf("O vetor não é um heap.\n");
                 }
                 break;
             }
@@ -174,23 +174,23 @@ int main(){
                 break;
             }
            
-            // Preenche os assentos restantes sem usar InsereHeap e depois aplica Heapfy
+            //Preenche todos os lugares do avião com heapfy
             case 6: {
-                int livres = N - (proximo - 1);   // prioridades ainda não distribuídas
+                int livres = N - (proximo - 1);   
 
                 if (livres <= 0) {
                     printf("O Avião está cheio. Não há assentos livres.\n");
                     break;
                 }
 
-                for (int k = 0; k < livres; k++) {
+                for (int i = 0; i < livres; i++) {
                     Passageiro p;
-                    snprintf(p.Nome, sizeof(p.Nome), "Passageiro %d", proximo);
+                    sprintf(p.Nome, "%d", proximo);
                     p.Prioridade = vetor_prioridades[proximo];
                     proximo++;
 
                     tam++;
-                    heap[tam] = p;               // só coloca no vetor, sem organizar
+                    heap[tam] = p;               
                 }
 
                 int comp = 0;
@@ -205,7 +205,7 @@ int main(){
 
             // Sai do programa
             case 7:{
-                printf("Saindo do programa...\n");
+                printf("Saindo do programa\n");
                 break;
             }
             // Caso usuário digite uma opção inválida

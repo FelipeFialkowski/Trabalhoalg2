@@ -13,8 +13,8 @@ void HeapfyInt(int vetor[tamanho],int tam, int *contador, int *trocas);
 
 void HeapSortInt(int vetor[tamanho],int *contador, int *trocas);
 
-void menos_trocas(int trocas_heap, int trocas_quick, int trocas_insert);
+void menos_trocas(int trocas_heap, int trocas_quick, int trocas_insert); // Compara e indica qual metodo de ordenação fez menos trocas
 
-void menos_comparacoes(int comparacoes_heap, int comparacoes_quick, int comparacoes_insert);
+void menos_comparacoes(int comparacoes_heap, int comparacoes_quick, int comparacoes_insert); // Compara e indica qual metodo de ordenação fez menos comparações
 
 #endif

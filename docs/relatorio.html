@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,18 +6,125 @@
     <title>Relatório - VoeHeap</title>
 </head>
 <body>
-    <h1>Relatório de Implementação e Resultados</h1>
-    
+
+    <h1>Funcionamento do programa</h1>
+
+    <h2>main.c</h2>
+
+    <p>
+        Dentro da main temos apenas o menu de opções assim como a inicialização de um vetor Heap de tamanho vazio utilizando da função InciaHeap,além também da criação de uma ordem aleatória para todos os elementos dos indices de N que vão de 1 até 853, <br>
+        esse numero foi escolhido pois é o mesmo numero de acentos do maior avião ja registrado.
+    <p>
+
+    <h3>Menu de opções</h3>
+
+    <p>
+      
+    </p>
+
+    <h2>SortFuncoes.c</h2>
+
+    <p>
+        Dentro da SortFuncoes temos quase todoas as funções que são utilizadas ao longo do programa
+    </p>
+
+    <h4>IniciaHeap</h4>
+    <p>Cria um vetor vazio(tamanho atual = 0)</p>
+
+    <h4>InsereHeap</h4>
+    <p>
+        A aplicação do insere foi feita baseada no codigo visto em sala de aula, com algumas modificações para poder trabalhar com uma struct ao invez de apenas um elemento e a adição da contagem de Trocas e comparações feitas na inserção.
+        Para realizar a Inserção nós começamos aumentando o tamanho atual do vetor e inserimos um elemento nessa nova posição do manaho(struct nome e prioridade),como ela é uma função Heap ao final da inserção nós realizamos trocas de posições entre os elementos até o vetor atual voltar a obedecer a ordem (vetor[tam/2] > vetor[tam])
+    </p>
+
+    <h4>RemoveHeap</h4>
+    <p>
+        Como essa foi uma das funções que não foi vista em sala de aula, para a implementação da RemoveHeap resolvemos remover sempre o elemento de maior prioridade(ou seja o primeiro elemento do Heap), ja que no contexto do exercicio o Remove é utilizado para os passageiros que embarcaram e estamos embarcando primeiro os de maior prioridade ja que estamos usando um MaxHeap.Ao final da execução nós realizamos um SacodeHeap(função vista em aula) para reorganizar a ordem do Heap após a remoção do elemento pai
+    </p>
+
+    <h4>Heapfy</h4>
+    <p>
+        Outra função vista em sala de aula, que aplica o SacodeHeap em todos os elementos da metade inferior do tamanho atual do vetor
+    </p>
+
+    <h4>ChecaHeap</h4>
+    <p>
+        Função que verifica se um vetor atual é heap ou não, vendo se um elemento pai é maior que seus elementos filhos
+    </p>
+
+    <h4>ImrpimeHeap</h4>
+    <p>
+        Função utilizada para imprimir os passageiros que ainda devem embarcar(por algum motivo ele ja automaticamente deixa eles em ordem de Heap)
+    </p>
+
+    <h4>SacodeHeap</h4>
+    <p>
+        Função utilizada para Reorganizar um Heap após alguma alteração(inserção,remoção,etc...)pegando um elemento, verificando seus filhos vendo se algum deles é mairo que o elemento e qual dos dois filhos(se houverem dois) é o maior e se o filho for maior que o pai, troca os dois, repetindo isso sempre dobrando o indice do elemento até que o indice seja maior que o tamanho atual, acabando a execução
+    </p>
+
+    <h4>Heapsort</h4>
+    <p>
+        No Heapsort primeiramente utilizamos Heapfy para fazer o vetor atual se tornar um Heap e após isso fazemos um loop, colocando o primeiro elemento do Heap(vetor[1]) no final do vetor e depois utilizando o SacodeHeap para arrumar o heap restante, repetindo isso até que o vetor Heap tenha se tornado um vetor ordenado, isso funciona devido ao fato de estarmos utilizando um MaxHeap, como o maior elemento sempre sera o (vetor[1]) então a ordenação do vetor sempre sera do maior para o menor até acabar o Heap
+    </p>
+
+    <h3>Funções relacionadas ao QuickSort</h3>
+
+    <h4>MaiorIgual, MenorIgual</h4>
+    <p>
+        Funções auxiliares utilizadas para facilitar a contagem de comparações na função partição devido ao && dentro do if para encontrar a mediana
+    </p>
+
+    <h4>Particao</h4>
+    <p>
+        Assim como pedido no enunciado, para acharmos o pivo da partição pegamos os valores dos elementos na primeira,ultima e posição do meio, após isso utilizamos de um if para descobrir qual dentre os 3 é o valor da mediana, por exemplo:
+    </p>
+
+    <pre>
+vetor[esq] = 54
+vetor[meio] = 37
+vetor[dir] = 98
+    </pre>
+
+    <p>
+        Nessa situação após a comparação entre os 3 elementos, o pivo escolhido seria o esq visto que ele é o valor do meio  após isso para a continuação da partição, trocamos o elemento mais a esquerda com o pivo para termos o pivo no começo e possamos trabalhar com um codigo parecido com o que foi visto em sala de aula,
+    </p>
+
+    <p>
+       porém algumas alterações na estrutura tiveram que ser feitar para acomodar a contagem de comparações, o que não era possivel na estrutura original
+    </p>
+
+    <p>
+        para finalizar a partição, todos os elemento menor que o pivo são arrastados para sua esquerda,mantendo sua ordem original enquanto os maiores ou iguais são arrastados para a direita do pivo
+    </p>
+
+    <h4>Quicksort</h4>
+    <p>
+        Essa função apenas é utilizada para o teste com o vetor de 1024 elementos. Função que a partir do pivo, cria dois subvetores diferentes, um menor que o pivo e outro maior que o pivo e após isso chama recursivamente o quicksort para os subvetores da esquerda e direita, repetindo isso até que todos os elementos estejam em seu devido lugar(como o pivo manda todos os menores e maiores para lados diferentes, o pivo fica no lugar certo quando a partição é feita)
+    </p>
+
+    <h4>InsertSort</h4>
+    <p>
+        Essa função apenas é utilizada para o teste com o vetor de 1024 elementos.assim como visto em sala, o InserSort começa com 1 elemento e a cada iteração de um loop um novo elemento é adicionado  e após isso,comparado com o resto dos elementos do vetor, sendo arrastado para a esquerda até achar algum elemento menor que ele.
+    </p>
+
+    <h4>HeapsortInt</h4>
+    <p>
+        para a realização do teste com o vetor de 1024 elementos, tivemos que criar um segundo Heapsort ja que o primeiro era utilizado em uma struct ja esse é apenas em um vetor, tendo sua propria versão do Sacode,<br>
+        Heapfy e Heapsort que possuem a mesma funcionalidade do Heapsort apresentado anteriormente, apenas para vetor ao invez de struct
+    </p>
+
     <h2>Estrutura do Trabalho</h2>
     <p></p>
-    
+
     <h2>Desenvolvimento do Trabalho</h2>
     <p></p>
 
     <h2>Análise de Resultados</h2>
     <p></p>
-    
+
     <br>
+
     <a href="index.html">Voltar para a página principal</a>
+
 </body>
 </html>

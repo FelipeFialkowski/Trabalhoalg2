@@ -12,19 +12,19 @@ typedef struct {
 
 void IniciaHeap(int *tam);
 
-void InsereHeap(Passageiro vetor[N],int *tam,Passageiro elemento, int *comparacoes, int *trocas); //* adicionado para contar comparações de Heapfy
+void InsereHeap(Passageiro vetor[N],int *tam,Passageiro elemento, int *comparacoes, int *trocas); 
 
 Passageiro RemoveHeap(Passageiro vetor[N],int *tam, int *comparacoes, int *trocas);
 
-void Heapfy(Passageiro vetor[N],int tam, int *comparacoes, int *trocas); //mostrar numero de comparações e trocas
+void Heapfy(Passageiro vetor[N],int tam, int *comparacoes, int *trocas); 
 
 int ChecaHeap(Passageiro vetor[], int tam);
 
 void ImprimeHeap(Passageiro vetor[N], int tam);
 
-void SacodeHeap(Passageiro vetor[N], int raiz, int tam, int *comparacoes, int *trocas); //mostrar numero de comparações e trocas
+void SacodeHeap(Passageiro vetor[N], int raiz, int tam, int *comparacoes, int *trocas); 
 
-void HeapSort(Passageiro vetor[N], int tam, int *comparacoes, int *trocas); //mostrar numero de comparações e trocas(verificar depois se esta certo)
+void HeapSort(Passageiro vetor[N], int tam, int *comparacoes, int *trocas); 
 
 int MaiorIgual(int a, int b, int *comparacoes);
 

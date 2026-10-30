@@ -17,7 +17,6 @@ void aleatorizar_vetor(int vetor_prioridades[]){
     for (int i = 1; i <= N; i ++){
         vetor_prioridades[i] = i;
     }
-
     // Embaralha o vetor de maneira aleatória
     for (int i = N ; i > 1; i --){
 
@@ -26,9 +25,7 @@ void aleatorizar_vetor(int vetor_prioridades[]){
         int aux = vetor_prioridades[i];
         vetor_prioridades[i] = vetor_prioridades[pos];
         vetor_prioridades[pos] = aux;
-
     }
-
 }
 
 void SacodeHeapInt(int vetor[tamanho], int raiz, int tam, int *contador, int *trocas) {
@@ -37,8 +34,6 @@ void SacodeHeapInt(int vetor[tamanho], int raiz, int tam, int *contador, int *tr
 
     while (raiz * 2 <= tam) {
         filho = raiz * 2;
-
-        // Escolhe o maior filho
         if (filho < tam) {
             (*contador)++;
 
@@ -46,8 +41,6 @@ void SacodeHeapInt(int vetor[tamanho], int raiz, int tam, int *contador, int *tr
                 filho++;
             }
         }
-
-        // Compara o pai com o maior filho
         (*contador)++;
 
         if (vetor[raiz] < vetor[filho]) {
@@ -70,7 +63,6 @@ void HeapfyInt(int vetor[tamanho], int tam, int *contador, int *trocas) {
 }
 
 void HeapSortInt(int vetor[tamanho], int *contador, int *trocas) {
-    
     int aux;
 
     HeapfyInt(vetor, tamanho, contador, trocas);

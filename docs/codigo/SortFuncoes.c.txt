@@ -73,6 +73,7 @@ int ChecaHeap(Passageiro vetor[], int tam){
     }
     return 1;
 }
+
 /*função que imprime Nome e prioridade de um Heap que ainda devem ser embarcados*/
 void ImprimeHeap(Passageiro vetor[N], int tam) {
     int i;
@@ -179,6 +180,7 @@ void particao(int vetor[Test], int esq,int dir,int *pos_pivo,int *comparacoes_qu
             if (!(vetor[i] <= pivo))
                 break;
 
+            (*comparacoes_quick)++; //i < dir
             if (!(i < dir))
                 break;
             i++;
