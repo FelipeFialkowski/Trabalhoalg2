@@ -30,6 +30,14 @@ kojima - fiz a função que cria o vetor de 1024 elementos, assim como a modific
 27/09/2026
 
 kojima - finalização da montagem do insert e do quick sort adaptados para contar trocas e comparações
+Felipe - Criado função HeapSortInt para inteiros, criação de comparações entre algortimos de ordenação. Correção de parametros de funções e da função insereheap, que agora troca toda struct
+
+28/10/2026
+Felipe - Adicionado sistema para evitar que o programa quebre caso usuario digite alguma entrada errada, com função fgets, atualização do HeapSort, adicionado AdresSanitizer para verificar possiveis erros de memória
+
+30/10/2026
+
+Felipe -  Criado uma nova opção no menu para preencher o heap inteiro. Criação do codigo em HTML do site e sua hospedagem, realizado testes de log envolvendo o programa principal e 5 testes para comparar algortimos de ordenação. Relatorio e logs adicionado para vizualição no site.
 
 **Funcionamente do programa**
 
